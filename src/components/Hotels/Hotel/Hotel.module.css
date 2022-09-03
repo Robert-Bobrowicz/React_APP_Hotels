@@ -1,0 +1,14 @@
+.hotel {
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 1.2 rem;
+    font-weight: 600;
+}
+
+.description {
+    color: rgb(93, 91, 91);
+    font-size: 0.88rem;
+    margin-top: 10px;
+}

@@ -1,11 +1,15 @@
 import React from 'react';
 import styles from './Header.module.css';
+import { Button } from 'reactstrap';
 
 function Header() {
-    console.log(styles);
+
     return (
-        <header className={styles.header}>
-            Header
+        <header className={`${styles.header} container`}>
+            <div className='d-flex'>
+                <input className='form-control' type='text' placeholder='Search...' />
+                <Button color='secondary'>Search</Button>
+            </div>
         </header>
     );
 }
