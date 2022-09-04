@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import styles from './Header.module.css';
 import { Button } from 'reactstrap';
 
-function Header() {
+function Header(props) {
     const [findHotel, setFindHotel] = useState('');
 
     function search() {
-        console.log('szukam ...', findHotel);
+        // console.log('szukam ...', findHotel);
+        props.onSearch();
     }
 
     function updateHotelFound(e) {
