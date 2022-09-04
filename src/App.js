@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
 import Hotels from './components/Hotels/Hotels';
+import LoadingIcon from './components/LoadingIcon/LoadingIcon';
 
 class App extends Component {
   hotels = [
@@ -33,7 +34,8 @@ class App extends Component {
   ]
 
   state = {
-    hotels: this.hotels
+    hotels: [],
+    loading: true
   }
 
   searchHandler(term) {
@@ -45,12 +47,24 @@ class App extends Component {
     this.setState({ hotels });
   }
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        hotels: this.hotels,
+        loading: false
+      });
+    }, 3000)
+  }
+
   render() {
     return (
       <div className="App">
         <Header onSearch={(findHotel) => this.searchHandler(findHotel)} />
         <Menu />
-        <Hotels hotels={this.state.hotels} />
+        {this.state.loading ?
+          (<LoadingIcon />) :
+          (<Hotels hotels={this.state.hotels} />)
+        }
       </div>
     )
   }
