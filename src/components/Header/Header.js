@@ -1,14 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Header.module.css';
 import { Button } from 'reactstrap';
 
 function Header() {
+    const [findHotel, setFindHotel] = useState('');
+
+    function search() {
+        console.log('szukam ...', findHotel);
+    }
+
+    function updateHotelFound(e) {
+        setFindHotel(e.target.value);
+    }
 
     return (
         <header className={`${styles.header} container`}>
             <div className='d-flex'>
-                <input className='form-control' type='text' placeholder='Search...' />
-                <Button color='secondary'>Search</Button>
+                <input
+                    value={findHotel}
+                    onKeyDown={e => e.key === 'Enter' && search()}
+                    onChange={updateHotelFound}
+                    className='form-control'
+                    type='text'
+                    placeholder='Search...' />
+                <Button
+                    color='secondary'
+                    onClick={search}>
+                    Search
+                </Button>
             </div>
         </header>
     );
