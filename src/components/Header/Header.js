@@ -6,8 +6,8 @@ function Header(props) {
     const [findHotel, setFindHotel] = useState('');
 
     function search() {
-        // console.log('szukam ...', findHotel);
-        props.onSearch();
+        console.log('szukam ...', findHotel);
+        props.onSearch(findHotel);
     }
 
     function updateHotelFound(e) {
