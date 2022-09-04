@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './Header.module.css';
 import { Button } from 'reactstrap';
+
+const propTypes = {
+    onSearch: PropTypes.func.isRequired
+}
 
 function Header(props) {
     const [findHotel, setFindHotel] = useState('');
@@ -33,5 +38,7 @@ function Header(props) {
         </header>
     );
 }
+
+Header.propTypes = propTypes;
 
 export default Header;

@@ -1,6 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from './Hotel.module.css';
 import img from '../../../assets/images/pexels-bruno-maceiras-2467558.jpg';
+
+const propTypes = {
+    name: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired
+};
 
 function Hotel(props) {
     return (
@@ -31,9 +39,9 @@ function Hotel(props) {
                 </div>
             </div>
         </div>
-
-
     )
-}
+};
+
+Hotel.propTypes = propTypes;
 
 export default Hotel;
