@@ -20,7 +20,7 @@ function Header(props) {
     }
 
     return (
-        <header className={`${styles.header} container`}>
+        <header className={`${styles.header}`}>
             <div className='d-flex'>
                 <input
                     value={findHotel}
