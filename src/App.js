@@ -37,7 +37,8 @@ class App extends Component {
 
   state = {
     hotels: [],
-    loading: true
+    loading: true,
+    theme: 'primary'
   }
 
   searchHandler(term) {
@@ -63,18 +64,24 @@ class App extends Component {
       <div className="App">
         <Layout
           header={
-            <Header onSearch={(findHotel) => this.searchHandler(findHotel)} />
+            <Header
+              onSearch={(findHotel) => this.searchHandler(findHotel)}
+              theme={this.state.theme} />
           }
           menu={
-            <Menu />
+            <Menu
+              theme={this.state.theme} />
           }
           content={
             this.state.loading ?
               (<LoadingIcon />) :
-              (<Hotels hotels={this.state.hotels} />)
+              (<Hotels
+                hotels={this.state.hotels}
+                theme={this.state.theme} />)
           }
           footer={
-            <Footer />
+            <Footer
+              theme={this.state.theme} />
           }
         />
       </div>

@@ -30,7 +30,7 @@ function Header(props) {
                     type='text'
                     placeholder='Search...' />
                 <Button
-                    color='secondary'
+                    color={props.theme}
                     onClick={search}>
                     Search
                 </Button>
