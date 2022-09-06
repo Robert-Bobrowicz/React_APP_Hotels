@@ -15,8 +15,8 @@ class Hotels extends Component {
                 {this.props.hotels.map(hotel =>
                     <Hotel
                         key={hotel.id}
-                        {...hotel}
-                        theme={this.props.theme} />)}
+                        {...hotel} />
+                )}
             </div>
         )
     }

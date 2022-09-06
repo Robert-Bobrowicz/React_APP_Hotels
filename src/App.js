@@ -6,8 +6,12 @@ import Hotels from './components/Hotels/Hotels';
 import LoadingIcon from './components/LoadingIcon/LoadingIcon';
 import Footer from './components/Footer/Footer';
 import Layout from './components/Layout/Layout';
+import ThemeContext from './components/context/themeContext';
 
 class App extends Component {
+
+  static contextType = ThemeContext;
+
   hotels = [
     {
       id: 1,
@@ -61,30 +65,26 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Layout
-          header={
-            <Header
-              onSearch={(findHotel) => this.searchHandler(findHotel)}
-              theme={this.state.theme} />
-          }
-          menu={
-            <Menu
-              theme={this.state.theme} />
-          }
-          content={
-            this.state.loading ?
-              (<LoadingIcon />) :
-              (<Hotels
-                hotels={this.state.hotels}
-                theme={this.state.theme} />)
-          }
-          footer={
-            <Footer
-              theme={this.state.theme} />
-          }
-        />
-      </div>
+      <ThemeContext.Provider value="primary">
+        <div className="App">
+          <Layout
+            header={
+              <Header onSearch={(findHotel) => this.searchHandler(findHotel)} />
+            }
+            menu={
+              <Menu />
+            }
+            content={
+              this.state.loading ?
+                (<LoadingIcon />) :
+                (<Hotels hotels={this.state.hotels} />)
+            }
+            footer={
+              <Footer />
+            }
+          />
+        </div>
+      </ThemeContext.Provider>
     )
   }
 }

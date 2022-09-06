@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Header.module.css';
 import { Button } from 'reactstrap';
+import ThemeContext from '../context/themeContext';
 
 const propTypes = {
     onSearch: PropTypes.func.isRequired
@@ -29,11 +30,15 @@ function Header(props) {
                     className='form-control'
                     type='text'
                     placeholder='Search...' />
-                <Button
-                    color={props.theme}
-                    onClick={search}>
-                    Search
-                </Button>
+                <ThemeContext.Consumer>
+                    {value => 
+                        <Button
+                            color={value}
+                            onClick={search}>
+                            Search
+                        </Button>
+                    }
+                </ThemeContext.Consumer>
             </div>
         </header>
     );
