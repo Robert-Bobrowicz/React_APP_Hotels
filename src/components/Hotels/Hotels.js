@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Hotel from './Hotel/Hotel';
 import styles from './Hotels.module.css';
@@ -7,7 +7,16 @@ const propTypes = {
     hotels: PropTypes.array.isRequired
 }
 
-class Hotels extends Component {
+class Hotels extends PureComponent {
+
+    // shouldComponentUpdate(nextProps, nextState) {      //PureComponent zastąpił Component i shouldComponentUpdate
+    //     if (this.props.hotels === nextProps.hotels) {
+    //         return false;
+    //     } else {
+    //         return true;
+    //     }
+    // }
+
     render() {
         return (
             <div className={styles.container}>
