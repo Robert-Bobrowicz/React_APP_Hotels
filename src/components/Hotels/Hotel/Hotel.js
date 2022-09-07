@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import styles from './Hotel.module.css';
 import img from '../../../assets/images/pexels-bruno-maceiras-2467558.jpg';
@@ -12,6 +12,8 @@ const propTypes = {
 };
 
 function Hotel(props) {
+    const theme = useContext(ThemeContext);
+
     return (
         <div className={`${styles.hotel} card`}>
             <div className="card-body">
@@ -35,11 +37,11 @@ function Hotel(props) {
                         <p className={styles.description}>
                             {props.description}
                         </p>
-                        <ThemeContext.Consumer>
-                            {value => <a href='www.booking.com' className={`btn btn-${value} float-start px-5`}>
-                                View deals
-                            </a>}
-                        </ThemeContext.Consumer>
+
+                        <a href='www.booking.com' className={`btn btn-${theme} float-start px-5`}>
+                            View deals
+                        </a>
+
 
                     </div>
                 </div>

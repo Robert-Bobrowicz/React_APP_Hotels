@@ -1,5 +1,14 @@
 import React from "react";
 
-const ThemeContext = React.createContext();
+const colors = {
+    primary: {
+        color: 'primary'
+    },
+    secondary: {
+        color: 'warning'
+    }
+}
+
+const ThemeContext = React.createContext(colors.secondary);
 
 export default ThemeContext;

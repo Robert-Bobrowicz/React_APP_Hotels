@@ -42,7 +42,7 @@ class App extends Component {
   state = {
     hotels: [],
     loading: true,
-    theme: 'primary'
+    color: 'primary'
   }
 
   searchHandler(term) {
@@ -60,12 +60,12 @@ class App extends Component {
         hotels: this.hotels,
         loading: false
       });
-    }, 3000)
+    }, 2000)
   }
 
   render() {
     return (
-      <ThemeContext.Provider value="primary">
+      <ThemeContext.Provider value={this.state.color}>
         <div className="App">
           <Layout
             header={

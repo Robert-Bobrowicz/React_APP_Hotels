@@ -1,12 +1,16 @@
+import React, { useContext } from "react";
 import ThemeContext from "../context/themeContext";
+import Example from "../Example";
 
-function Footer(props) {
+function Footer() {
+    const theme = useContext(ThemeContext);
+
     return (
-        <ThemeContext.Consumer>
-            {value => 
-                <div className={`text-center m-3 text-${value}`}>Fotter 2022</div>
-            }
-        </ThemeContext.Consumer>
+        <div className="text-center">
+            <Example />
+            <div className={`text-center m-3 text-${theme}`}>Fotter 2022</div>
+        </div>
+
     )
 }
 

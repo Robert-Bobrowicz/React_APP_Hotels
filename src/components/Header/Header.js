@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Header.module.css';
-import { Button } from 'reactstrap';
+// import { Button } from 'reactstrap';
 import ThemeContext from '../context/themeContext';
 
 const propTypes = {
     onSearch: PropTypes.func.isRequired
 }
 
+
 function Header(props) {
     const [findHotel, setFindHotel] = useState('');
+    const theme = useContext(ThemeContext);
 
     function search() {
         console.log('szukam ...', findHotel);
@@ -30,15 +32,14 @@ function Header(props) {
                     className='form-control'
                     type='text'
                     placeholder='Search...' />
-                <ThemeContext.Consumer>
-                    {value => 
-                        <Button
-                            color={value}
-                            onClick={search}>
-                            Search
-                        </Button>
-                    }
-                </ThemeContext.Consumer>
+
+                {/* <Button
+                    color={theme.color}
+                    onClick={search}>
+                    Search
+                </Button> */}
+                <button onClick={search} className={`ml-1 btn btn-${theme}`}>Search</button>
+
             </div>
         </header>
     );
