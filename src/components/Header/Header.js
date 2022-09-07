@@ -1,8 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Header.module.css';
 // import { Button } from 'reactstrap';
 import ThemeContext from '../context/themeContext';
+import mousePosition from '../hoc/mousePosition';
 
 const propTypes = {
     onSearch: PropTypes.func.isRequired
@@ -12,6 +13,11 @@ const propTypes = {
 function Header(props) {
     const [findHotel, setFindHotel] = useState('');
     const theme = useContext(ThemeContext);
+
+    useEffect(() => {
+        document.querySelector('.search').focus();
+    }, []);
+
 
     function search() {
         console.log('szukam ...', findHotel);
@@ -24,12 +30,14 @@ function Header(props) {
 
     return (
         <header className={`${styles.header}`}>
+            {/* {props.mouseX}
+            {props.mouseY} */}
             <div className='d-flex'>
                 <input
                     value={findHotel}
                     onKeyDown={e => e.key === 'Enter' && search()}
                     onChange={updateHotelFound}
-                    className='form-control'
+                    className='form-control search'
                     type='text'
                     placeholder='Search...' />
 
@@ -47,4 +55,4 @@ function Header(props) {
 
 Header.propTypes = propTypes;
 
-export default Header;
+export default mousePosition(Header);
