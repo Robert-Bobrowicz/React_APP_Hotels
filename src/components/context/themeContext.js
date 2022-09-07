@@ -11,4 +11,6 @@ const colors = {
 
 const ThemeContext = React.createContext(colors.secondary);
 
+ThemeContext.displayName = 'ThemeContext';
+
 export default ThemeContext;
