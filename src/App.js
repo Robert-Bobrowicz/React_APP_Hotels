@@ -7,6 +7,7 @@ import LoadingIcon from './components/LoadingIcon/LoadingIcon';
 import Footer from './components/Footer/Footer';
 import Layout from './components/Layout/Layout';
 import ThemeContext from './components/context/themeContext';
+import AuthContext from './components/context/authContext';
 
 class App extends Component {
 
@@ -42,7 +43,8 @@ class App extends Component {
   state = {
     hotels: [],
     loading: true,
-    color: 'primary'
+    color: 'primary',
+    isAuthenticated: false
   }
 
   searchHandler(term) {
@@ -65,26 +67,28 @@ class App extends Component {
 
   render() {
     return (
-      <ThemeContext.Provider value={this.state.color}>
-        <div className="App">
-          <Layout
-            header={
-              <Header onSearch={(findHotel) => this.searchHandler(findHotel)} />
-            }
-            menu={
-              <Menu />
-            }
-            content={
-              this.state.loading ?
-                (<LoadingIcon />) :
-                (<Hotels hotels={this.state.hotels} />)
-            }
-            footer={
-              <Footer />
-            }
-          />
-        </div>
-      </ThemeContext.Provider>
+      <AuthContext.Provider
+        value={{
+          isAuthenticated: this.state.isAuthenticated,
+          login: () => this.setState({ isAuthenticated: true }),
+          logout: () => this.setState({ isAuthenticated: false })
+        }}>
+        <ThemeContext.Provider value={this.state.color}>
+          <div className="App">
+            <Layout
+              header={<Header
+                onSearch={(findHotel) => this.searchHandler(findHotel)} />}
+              menu={<Menu />}
+              content={
+                this.state.loading ?
+                  (<LoadingIcon />) :
+                  (<Hotels hotels={this.state.hotels} />)
+              }
+              footer={<Footer />}
+            />
+          </div>
+        </ThemeContext.Provider>
+      </AuthContext.Provider>
     )
   }
 }
