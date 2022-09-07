@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Header.module.css';
 // import { Button } from 'reactstrap';
@@ -14,8 +14,10 @@ function Header(props) {
     const [findHotel, setFindHotel] = useState('');
     const theme = useContext(ThemeContext);
 
+    const inputRef = useRef();
+
     useEffect(() => {
-        document.querySelector('.search').focus();
+        inputRef.current.focus();
     }, []);
 
 
@@ -34,6 +36,7 @@ function Header(props) {
             {props.mouseY} */}
             <div className='d-flex'>
                 <input
+                    ref={inputRef}
                     value={findHotel}
                     onKeyDown={e => e.key === 'Enter' && search()}
                     onChange={updateHotelFound}
