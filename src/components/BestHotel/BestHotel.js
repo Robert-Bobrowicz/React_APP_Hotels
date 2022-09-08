@@ -7,14 +7,19 @@ const BestHotel = (props) => {
     const [time, setTime] = useState('');
 
     useEffect(() => {
-        setInterval(() => {
+        let interval;
+        interval = setInterval(() => {
             const remainingTime = moment().to(endTime);
             setTime(remainingTime);
             console.log(remainingTime)
         }, 1000);
+
+        return () => {
+            clearInterval(interval);
+        }
     }, []);
 
-    if (!hotel) return null;
+    // if (!hotel) return null;
 
     return (
         <div className=" card alert alert-success">
@@ -26,7 +31,7 @@ const BestHotel = (props) => {
                     <h5>{hotel.name}</h5>
                     <p>Rating: {hotel.rating}</p>
                 </div>
-                <p>Limited time offer, ends {time}</p>
+                <p>Limited time offer, ends {time}!</p>
                 <a href="#ViewHotel" className="btn btn-sm btn-primary">View offer</a>
             </div>
 

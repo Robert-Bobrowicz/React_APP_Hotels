@@ -88,7 +88,7 @@ function App() {
               loading ?
                 <LoadingIcon /> :
                 <>
-                  <BestHotel getBestHotel={getBestHotel} />
+                  {getBestHotel() ? <BestHotel getBestHotel={getBestHotel} /> : null}
                   <Hotels hotels={hotels} />
                 </>
             }
