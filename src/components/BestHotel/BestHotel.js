@@ -11,7 +11,6 @@ const BestHotel = (props) => {
         interval = setInterval(() => {
             const remainingTime = moment().to(endTime);
             setTime(remainingTime);
-            console.log(remainingTime)
         }, 1000);
 
         return () => {
