@@ -4,6 +4,7 @@ import styles from './Header.module.css';
 // import { Button } from 'reactstrap';
 import ThemeContext from '../context/themeContext';
 import mousePosition from '../hoc/mousePosition';
+import InspiringQuote from '../InspiringQuote/InspiringQuote';
 
 const propTypes = {
     onSearch: PropTypes.func.isRequired
@@ -34,6 +35,7 @@ function Header(props) {
         <header className={`${styles.header}`}>
             {/* {props.mouseX}
             {props.mouseY} */}
+            <InspiringQuote />
             <div className='d-flex'>
                 <input
                     ref={inputRef}

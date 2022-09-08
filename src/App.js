@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
@@ -60,6 +60,16 @@ function App() {
     setHotels(newHotels);
   }
 
+  const getBestHotel = useCallback(() => {
+    if (!hotels.length) {
+      return null;
+    } else {
+      return hotels.sort((a, b) =>
+        a.rating > b.rating ? -1 : 1
+      )[0];
+    }
+  }, [hotels]);
+
   return (
     <AuthContext.Provider
       value={{
@@ -78,7 +88,7 @@ function App() {
               loading ?
                 <LoadingIcon /> :
                 <>
-                  <BestHotel />
+                  <BestHotel getBestHotel={getBestHotel} />
                   <Hotels hotels={hotels} />
                 </>
             }
