@@ -17,10 +17,12 @@ class Hotels extends PureComponent {
     //     }
     // }
 
+    count = this.props.hotels.length;
+
     render() {
         return (
             <div className={styles.container}>
-                <h2 className={styles.title}>Explore our offers</h2>
+                <h2 className={styles.title}>Explore our offers ({this.count})</h2>
                 {this.props.hotels.map(hotel =>
                     <Hotel
                         key={hotel.id}

@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer';
 import Layout from './components/Layout/Layout';
 import ThemeContext from './components/context/themeContext';
 import AuthContext from './components/context/authContext';
+import BestHotel from './components/BestHotel/BestHotel';
 
 const hotelsDB = [
   {
@@ -72,10 +73,14 @@ function App() {
             header={<Header
               onSearch={(term) => searchHandler(term)} />}
             menu={<Menu />}
+
             content={
               loading ?
-                (<LoadingIcon />) :
-                (<Hotels hotels={hotels} />)
+                <LoadingIcon /> :
+                <>
+                  <BestHotel />
+                  <Hotels hotels={hotels} />
+                </>
             }
             footer={<Footer />}
           />

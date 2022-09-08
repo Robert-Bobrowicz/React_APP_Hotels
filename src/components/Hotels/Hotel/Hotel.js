@@ -41,8 +41,6 @@ function Hotel(props) {
                         <a href='www.booking.com' className={`btn btn-${theme} float-start px-5`}>
                             View deals
                         </a>
-
-
                     </div>
                 </div>
             </div>
