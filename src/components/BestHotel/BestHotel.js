@@ -18,8 +18,6 @@ const BestHotel = (props) => {
         }
     }, []);
 
-    // if (!hotel) return null;
-
     return (
         <div className=" card alert alert-success">
             <div className="card-header text-center">
