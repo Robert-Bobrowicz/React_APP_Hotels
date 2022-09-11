@@ -41,7 +41,7 @@ function Hotel(props) {
                         </p>
 
                         {auth
-                            ? <p className="mt-2">Dostępne 4 pokoje</p>
+                            ? <p className="mt-2">4 rooms avaiable</p>
                             : null}
 
                         <a href='www.booking.com' className={`btn btn-${theme} float-start px-5`}>
