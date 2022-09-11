@@ -41,7 +41,7 @@ function App() {
 
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [color, setColor] = useState('primary');
+  const [color] = useState('primary');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
