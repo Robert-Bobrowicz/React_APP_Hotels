@@ -9,6 +9,7 @@ import Layout from './components/Layout/Layout';
 import ThemeContext from './components/context/themeContext';
 import AuthContext from './components/context/authContext';
 import BestHotel from './components/BestHotel/BestHotel';
+import LastSeenHotel from './components/Hotels/LastSeenHotel/LastSeenHotel';
 
 const hotelsDB = [
   {
@@ -88,6 +89,7 @@ function App() {
               loading ?
                 <LoadingIcon /> :
                 <>
+                  <LastSeenHotel />
                   {getBestHotel() ? <BestHotel getBestHotel={getBestHotel} /> : null}
                   <Hotels hotels={hotels} />
                 </>
