@@ -68,7 +68,6 @@ function App() {
   }, [hotels]);
 
   const openHotel = (hotel) => {
-    console.log(hotel);
     setLastSeenHotel(hotel);
   }
 
