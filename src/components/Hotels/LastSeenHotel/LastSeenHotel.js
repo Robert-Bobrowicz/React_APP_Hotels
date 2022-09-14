@@ -1,4 +1,3 @@
-import useLocalStorage from "../../hooks/useLocalStorage";
 
 function LastSeenHotel(props) {
 
@@ -8,8 +7,6 @@ function LastSeenHotel(props) {
     // }
 
     // if (!props.hotel) return null;
-
-
 
     return (
         <div>
@@ -30,7 +27,7 @@ function LastSeenHotel(props) {
                     }}
                         className="d-flex justify-content-between">
                         <a href="#ViewHotel" className="btn btn-sm btn-primary">View offer</a>
-                        <a href="#cancelHotel" className="btn btn-sm btn-secondary">Don't show again</a>
+                        <button onClick={props.onRemove} className="btn btn-sm btn-secondary">Don't show again</button>
                     </div>
 
                 </div>

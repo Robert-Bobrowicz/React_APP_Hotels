@@ -72,6 +72,10 @@ function App() {
     setLastSeenHotel(hotel);
   }
 
+  const removeLastSeenHotel = () => {
+    setLastSeenHotel(null);
+  }
+
   useEffect(() => {
     setTimeout(() => {
       setHotels(hotelsDB);
@@ -97,7 +101,7 @@ function App() {
               loading ?
                 <LoadingIcon /> :
                 <>
-                  {lastSeenHotel ? <LastSeenHotel {...lastSeenHotel}/> : null}
+                  {lastSeenHotel ? <LastSeenHotel {...lastSeenHotel} onRemove={removeLastSeenHotel} /> : null}
                   {getBestHotel() ? <BestHotel getBestHotel={getBestHotel} /> : null}
                   <Hotels onOpen={openHotel} hotels={hotels} />
                 </>
