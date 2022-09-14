@@ -10,6 +10,7 @@ import ThemeContext from './components/context/themeContext';
 import AuthContext from './components/context/authContext';
 import BestHotel from './components/BestHotel/BestHotel';
 import LastSeenHotel from './components/Hotels/LastSeenHotel/LastSeenHotel';
+import useLocalStorage from './components/hooks/useLocalStorage';
 
 const hotelsDB = [
   {
@@ -44,13 +45,8 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [color] = useState('primary');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [lastSeenHotel, setLastSeenHotel] = useLocalStorage('last-seen-hotel', null);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setHotels(hotelsDB);
-      setLoading(false);
-    }, 2000)
-  }, [])
 
   const searchHandler = term => {
     console.log('szukam z poziomu App', term);
@@ -71,6 +67,18 @@ function App() {
     }
   }, [hotels]);
 
+  const openHotel = (hotel) => {
+    console.log(hotel);
+    setLastSeenHotel(hotel);
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setHotels(hotelsDB);
+      setLoading(false);
+    }, 2000)
+  }, [])
+
   return (
     <AuthContext.Provider
       value={{
@@ -89,9 +97,9 @@ function App() {
               loading ?
                 <LoadingIcon /> :
                 <>
-                  <LastSeenHotel />
+                  {lastSeenHotel ? <LastSeenHotel {...lastSeenHotel}/> : null}
                   {getBestHotel() ? <BestHotel getBestHotel={getBestHotel} /> : null}
-                  <Hotels hotels={hotels} />
+                  <Hotels onOpen={openHotel} hotels={hotels} />
                 </>
             }
             footer={<Footer />}

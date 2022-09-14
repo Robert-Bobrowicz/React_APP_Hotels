@@ -1,14 +1,13 @@
 import useLocalStorage from "../../hooks/useLocalStorage";
 
 function LastSeenHotel(props) {
-    // const [hotel, setHotel] = useLocalStorage(null);
 
-    const hotel = {
-        name: "Robert's Apartments Old Town Krzywe Koło",
-        rating: 9.2
-    }
+    // const hotel = {
+    //     name: "Robert's Apartments Old Town Krzywe Koło",
+    //     rating: 9.2
+    // }
 
-    if (!hotel) return null;
+    // if (!props.hotel) return null;
 
 
 
@@ -17,14 +16,23 @@ function LastSeenHotel(props) {
             Last seen offer
             <div className=" card alert alert-secondary">
                 <div className="card-header text-center">
-                    Best offer!
+                    Recently viewed
                 </div>
                 <div className="card-body">
                     <div className="d-flex justify-content-between">
-                        <h5>{hotel.name}</h5>
-                        <p>Rating: {hotel.rating}</p>
+                        <h5>{props.name}</h5>
+                        <p>Rating: {props.rating}</p>
                     </div>
-                    <a href="#ViewHotel" className="btn btn-sm btn-primary">View offer</a>
+
+                    <div style={{
+                        width: "240px",
+                        marginLeft: "auto"
+                    }}
+                        className="d-flex justify-content-between">
+                        <a href="#ViewHotel" className="btn btn-sm btn-primary">View offer</a>
+                        <a href="#cancelHotel" className="btn btn-sm btn-secondary">Don't show again</a>
+                    </div>
+
                 </div>
             </div>
         </div>

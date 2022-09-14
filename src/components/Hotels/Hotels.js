@@ -25,8 +25,9 @@ class Hotels extends PureComponent {
                 <h2 className={styles.title}>Explore our offers ({this.count})</h2>
                 {this.props.hotels.map(hotel =>
                     <Hotel
+                        onOpen= {this.props.onOpen}
                         key={hotel.id}
-                        {...hotel} />
+                {...hotel} />
                 )}
             </div>
         )

@@ -16,6 +16,11 @@ function Hotel(props) {
     const theme = useContext(ThemeContext);
     const [auth] = useAuth();
 
+    const clickHandler = (e) => {
+        e.preventDefault();
+        props.onOpen(props);
+    }
+
     return (
         <div className={`${styles.hotel} card`}>
             <div className="card-body">
@@ -44,7 +49,9 @@ function Hotel(props) {
                             ? <p className="mt-2">4 rooms avaiable</p>
                             : null}
 
-                        <a href='www.booking.com' className={`btn btn-${theme} float-start px-5`}>
+                        <a href='www.booking.com'
+                            onClick={clickHandler}
+                            className={`btn btn-${theme} float-start px-5`}>
                             View deals
                         </a>
 
