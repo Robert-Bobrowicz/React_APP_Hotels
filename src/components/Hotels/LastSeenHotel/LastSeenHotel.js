@@ -1,7 +1,7 @@
 import useLocalStorage from "../../hooks/useLocalStorage";
 
 function LastSeenHotel(props) {
-    // const [hotel, setHotel] = useLocalStorage();
+    // const [hotel, setHotel] = useLocalStorage(null);
 
     const hotel = {
         name: "Robert's Apartments Old Town Krzywe Koło",
