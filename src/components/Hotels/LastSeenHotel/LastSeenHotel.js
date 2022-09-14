@@ -10,7 +10,6 @@ function LastSeenHotel(props) {
 
     return (
         <div>
-            Last seen offer
             <div className=" card alert alert-secondary">
                 <div className="card-header text-center">
                     Recently viewed
