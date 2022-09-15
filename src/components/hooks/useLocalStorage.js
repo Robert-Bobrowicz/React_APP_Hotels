@@ -2,14 +2,8 @@ import { useState } from "react";
 
 function useLocalStorage(key, defaultValue) {
     const [state, setState] = useState(() => {
-
         const localStorageValue = window.localStorage.getItem(key);
-
-        if (localStorageValue) {
-            return JSON.parse(localStorageValue);
-        } else {
-            return defaultValue;
-        }
+        return localStorageValue ? JSON.parse(localStorageValue) : defaultValue;
     })
 
     const setValue = (val) => {
