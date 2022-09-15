@@ -11,6 +11,7 @@ import AuthContext from './components/context/authContext';
 import BestHotel from './components/BestHotel/BestHotel';
 import LastSeenHotel from './components/Hotels/LastSeenHotel/LastSeenHotel';
 import useLocalStorage from './components/hooks/useLocalStorage';
+import useWebsiteTitle from './components/hooks/useWebSiteTitle';
 
 const hotelsDB = [
   {
@@ -46,6 +47,7 @@ function App() {
   const [color] = useState('primary');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [lastSeenHotel, setLastSeenHotel] = useLocalStorage('last-seen-hotel', null);
+  useWebsiteTitle('Main page: Hotels');
 
 
   const searchHandler = term => {
