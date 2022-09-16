@@ -107,16 +107,12 @@ function App() {
                     <Route exact path="/" element={
                       <>
                         <h2>Hotels</h2>
-
                         {lastSeenHotel ? <LastSeenHotel {...lastSeenHotel} onRemove={removeLastSeenHotel} /> : null}
                         {getBestHotel() ? <BestHotel getBestHotel={getBestHotel} /> : null}
                         <Hotels onOpen={openHotel} hotels={hotels} />
                       </>
-
-                    }>
-                    </Route>
-                    <Route path="/hotel/:id" element={<h2> to moj hotel</h2>}>
-                    </Route>
+                    } />
+                    <Route path="/hotel/:id" element={<h2> to moj hotel</h2>} />
                   </Routes>
               }
               footer={<Footer />}
