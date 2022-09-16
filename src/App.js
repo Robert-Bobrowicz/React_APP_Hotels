@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
@@ -85,33 +86,45 @@ function App() {
   }, [])
 
   return (
-    <AuthContext.Provider
-      value={{
-        isAuthenticated: isAuthenticated,
-        login: () => setIsAuthenticated(true),
-        logout: () => setIsAuthenticated(false)
-      }}>
-      <ThemeContext.Provider value={color}>
-        <div className="App">
-          <Layout
-            header={<Header
-              onSearch={(term) => searchHandler(term)} />}
-            menu={<Menu />}
+    <Router>
+      <AuthContext.Provider
+        value={{
+          isAuthenticated: isAuthenticated,
+          login: () => setIsAuthenticated(true),
+          logout: () => setIsAuthenticated(false)
+        }}>
+        <ThemeContext.Provider value={color}>
+          <div className="App">
+            <Layout
+              header={<Header
+                onSearch={(term) => searchHandler(term)} />}
+              menu={<Menu />}
 
-            content={
-              loading ?
-                <LoadingIcon /> :
-                <>
-                  {lastSeenHotel ? <LastSeenHotel {...lastSeenHotel} onRemove={removeLastSeenHotel} /> : null}
-                  {getBestHotel() ? <BestHotel getBestHotel={getBestHotel} /> : null}
-                  <Hotels onOpen={openHotel} hotels={hotels} />
-                </>
-            }
-            footer={<Footer />}
-          />
-        </div>
-      </ThemeContext.Provider>
-    </AuthContext.Provider>
+              content={
+                loading ?
+                  <LoadingIcon /> :
+                  <Routes>
+                    <Route exact path="/" element={
+                      <>
+                        <h2>Hotels</h2>
+
+                        {lastSeenHotel ? <LastSeenHotel {...lastSeenHotel} onRemove={removeLastSeenHotel} /> : null}
+                        {getBestHotel() ? <BestHotel getBestHotel={getBestHotel} /> : null}
+                        <Hotels onOpen={openHotel} hotels={hotels} />
+                      </>
+
+                    }>
+                    </Route>
+                    <Route path="/hotel/:id" element={<h2> to moj hotel</h2>}>
+                    </Route>
+                  </Routes>
+              }
+              footer={<Footer />}
+            />
+          </div>
+        </ThemeContext.Provider>
+      </AuthContext.Provider>
+    </Router>
   )
 }
 

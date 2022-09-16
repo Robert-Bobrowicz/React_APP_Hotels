@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
 import styles from './Hotel.module.css';
 import img from '../../../assets/images/pexels-bruno-maceiras-2467558.jpg';
@@ -48,13 +49,16 @@ function Hotel(props) {
                         {auth
                             ? <p className="mt-2">4 rooms avaiable</p>
                             : null}
+                        <Link to={`/hotel/${props.id}`} onClick={clickHandler}
+                                className={`btn btn-${theme} float-start px-5`}>
+                                View deals
 
-                        <a href='www.booking.com'
-                            onClick={clickHandler}
-                            className={`btn btn-${theme} float-start px-5`}>
-                            View deals
-                        </a>
-
+                            {/* <a href='/hotel/id'
+                                onClick={clickHandler}
+                                className={`btn btn-${theme} float-start px-5`}>
+                                View deals
+                            </a> */}
+                        </Link>
                     </div>
                 </div>
             </div>
