@@ -10,7 +10,8 @@ const propTypes = {
     name: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired
+    description: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired
 };
 
 function Hotel(props) {
@@ -18,7 +19,7 @@ function Hotel(props) {
     const [auth] = useAuth();
 
     const clickHandler = (e) => {
-        e.preventDefault();
+        // e.preventDefault(); 
         props.onOpen(props);
     }
 
@@ -50,15 +51,15 @@ function Hotel(props) {
                             ? <p className="mt-2">4 rooms avaiable</p>
                             : null}
                         <Link to={`/hotel/${props.id}`} onClick={clickHandler}
-                                className={`btn btn-${theme} float-start px-5`}>
-                                View deals
+                            className={`btn btn-${theme} float-start px-5`}>
+                            View deals
+                        </Link>
 
-                            {/* <a href='/hotel/id'
+                        {/* <a href='/hotel/id'
                                 onClick={clickHandler}
                                 className={`btn btn-${theme} float-start px-5`}>
                                 View deals
                             </a> */}
-                        </Link>
                     </div>
                 </div>
             </div>
