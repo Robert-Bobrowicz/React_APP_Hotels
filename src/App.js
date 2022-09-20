@@ -4,15 +4,14 @@ import './App.css';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
 import Home from './pages/Home/Home';
-import Hotels from './components/Hotels/Hotels';
+
 import LoadingIcon from './components/LoadingIcon/LoadingIcon';
 import Footer from './components/Footer/Footer';
 import Layout from './components/Layout/Layout';
 import ThemeContext from './components/context/themeContext';
 import AuthContext from './components/context/authContext';
-import BestHotel from './components/BestHotel/BestHotel';
-import LastSeenHotel from './components/Hotels/LastSeenHotel/LastSeenHotel';
-import useLocalStorage from './components/hooks/useLocalStorage';
+
+
 import useWebsiteTitle from './components/hooks/useWebSiteTitle';
 
 const hotelsDB = [
@@ -44,7 +43,8 @@ const hotelsDB = [
 
 function App() {
 
-  
+  const [hotels, setHotels] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [color] = useState('primary');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   
@@ -59,10 +59,6 @@ function App() {
         .includes(term.toLowerCase()));
     setHotels(newHotels);
   }
-
-  
-
- 
 
   return (
     <Router>
