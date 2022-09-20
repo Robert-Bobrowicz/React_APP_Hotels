@@ -44,11 +44,10 @@ const hotelsDB = [
 
 function App() {
 
-  const [hotels, setHotels] = useState([]);
-  const [loading, setLoading] = useState(true);
+  
   const [color] = useState('primary');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [lastSeenHotel, setLastSeenHotel] = useLocalStorage('last-seen-hotel', null);
+  
   useWebsiteTitle('Main page: Hotels');
 
 
@@ -61,30 +60,9 @@ function App() {
     setHotels(newHotels);
   }
 
-  const getBestHotel = useCallback(() => {
-    if (!hotels.length) {
-      return null;
-    } else {
-      return hotels.sort((a, b) =>
-        a.rating > b.rating ? -1 : 1
-      )[0];
-    }
-  }, [hotels]);
+  
 
-  const openHotel = (hotel) => {
-    setLastSeenHotel(hotel);
-  }
-
-  const removeLastSeenHotel = () => {
-    setLastSeenHotel(null);
-  }
-
-  useEffect(() => {
-    setTimeout(() => {
-      setHotels(hotelsDB);
-      setLoading(false);
-    }, 2000)
-  }, [])
+ 
 
   return (
     <Router>
