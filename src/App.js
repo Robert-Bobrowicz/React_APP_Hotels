@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
+import Home from './pages/Home/Home';
 import Hotels from './components/Hotels/Hotels';
 import LoadingIcon from './components/LoadingIcon/LoadingIcon';
 import Footer from './components/Footer/Footer';
@@ -105,12 +106,7 @@ function App() {
                   <LoadingIcon /> :
                   <Routes>
                     <Route exact path="/" element={
-                      <>
-                        <h2>Hotels</h2>
-                        {lastSeenHotel ? <LastSeenHotel {...lastSeenHotel} onRemove={removeLastSeenHotel} /> : null}
-                        {getBestHotel() ? <BestHotel getBestHotel={getBestHotel} /> : null}
-                        <Hotels onOpen={openHotel} hotels={hotels} />
-                      </>
+                     <Home />
                     } />
                     <Route path="/hotel/:id" element={<h2> to moj hotel</h2>} />
                   </Routes>
