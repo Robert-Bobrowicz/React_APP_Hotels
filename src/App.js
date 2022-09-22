@@ -63,6 +63,7 @@ function App() {
         }}>
         <ThemeContext.Provider value={color}>
           <div className="App">
+
             <Layout
               header={<Header
                 onSearch={(term) => searchHandler(term)} />}
@@ -78,6 +79,7 @@ function App() {
               }
               footer={<Footer />}
             />
+
           </div>
         </ThemeContext.Provider>
       </AuthContext.Provider>
