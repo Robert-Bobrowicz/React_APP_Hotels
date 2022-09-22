@@ -1,18 +1,14 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
 import Home from './pages/Home/Home';
-
-import LoadingIcon from './components/LoadingIcon/LoadingIcon';
 import Footer from './components/Footer/Footer';
 import Layout from './components/Layout/Layout';
 import ThemeContext from './components/context/themeContext';
 import AuthContext from './components/context/authContext';
 
-
-import useWebsiteTitle from './components/hooks/useWebSiteTitle';
 
 const hotelsDB = [
   {
@@ -44,15 +40,12 @@ const hotelsDB = [
 function App() {
 
   const [hotels, setHotels] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [color] = useState('primary');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  
-  useWebsiteTitle('Main page: Hotels');
-
 
   const searchHandler = term => {
     console.log('szukam z poziomu App', term);
+    console.log(hotels);
     const newHotels = [...hotelsDB]
       .filter(el => el.name
         .toLowerCase()
@@ -76,14 +69,12 @@ function App() {
               menu={<Menu />}
 
               content={
-                loading ?
-                  <LoadingIcon /> :
-                  <Routes>
-                    <Route exact path="/" element={
-                     <Home />
-                    } />
-                    <Route path="/hotel/:id" element={<h2> to moj hotel</h2>} />
-                  </Routes>
+                <Routes>
+                  <Route exact path="/" element={
+                    <Home />
+                  } />
+                  <Route path="/hotel/:id" element={<h2> to moj hotel</h2>} />
+                </Routes>
               }
               footer={<Footer />}
             />
