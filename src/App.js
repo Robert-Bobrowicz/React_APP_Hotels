@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer';
 import Layout from './components/Layout/Layout';
 import ThemeContext from './components/context/themeContext';
 import AuthContext from './components/context/authContext';
+import {reducer, initialState} from './reducer';
 
 
 const hotelsDB = [
@@ -36,30 +37,6 @@ const hotelsDB = [
     image: ""
   }
 ]
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'set-hotels':
-      return {
-        ...state,
-        hotels: action.hotels
-      };
-    case 'set-isAuthenticated':
-      return {
-        ...state,
-        isAuthenticated: action.isAuthenticated
-      }
-    default:
-      throw new Error('Not available action: ' + action.type);
-  }
-}
-
-const initialState = {
-  hotels: [],
-  loading: true,
-  isAuthenticated: false,
-  color: 'primary'
-}
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
