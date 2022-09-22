@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
@@ -37,31 +37,52 @@ const hotelsDB = [
   }
 ]
 
-function App() {
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'set-hotels':
+      return {
+        ...state,
+        hotels: action.hotels
+      };
+    case 'set-isAuthenticated':
+      return {
+        ...state,
+        isAuthenticated: action.isAuthenticated
+      }
+    default:
+      throw new Error('Not available action: ' + action.type);
+  }
+}
 
-  const [hotels, setHotels] = useState([]);
-  const [color] = useState('primary');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+const initialState = {
+  hotels: [],
+  loading: true,
+  isAuthenticated: false,
+  color: 'primary'
+}
+
+function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const searchHandler = term => {
     console.log('szukam z poziomu App', term);
-    console.log(hotels);
+    console.log(state.hotels);
     const newHotels = [...hotelsDB]
       .filter(el => el.name
         .toLowerCase()
         .includes(term.toLowerCase()));
-    setHotels(newHotels);
+    dispatch({ type: 'set-hotels', hotels: newHotels })
   }
 
   return (
     <Router>
       <AuthContext.Provider
         value={{
-          isAuthenticated: isAuthenticated,
-          login: () => setIsAuthenticated(true),
-          logout: () => setIsAuthenticated(false)
+          isAuthenticated: state.isAuthenticated,
+          login: () => dispatch({ type: 'set-isAuthenticated', isAuthenticated: true }),
+          logout: () => dispatch({ type: 'set-isAuthenticated', isAuthenticated: false })
         }}>
-        <ThemeContext.Provider value={color}>
+        <ThemeContext.Provider value={state.color}>
           <div className="App">
 
             <Layout
