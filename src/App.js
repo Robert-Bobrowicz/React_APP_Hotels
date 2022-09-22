@@ -72,9 +72,7 @@ function App() {
 
                 content={
                   <Routes>
-                    <Route exact path="/" element={
-                      <Home />
-                    } />
+                    <Route exact path="/" element={<Home />} />
                     <Route path="/hotel/:id" element={<h2> to moj hotel</h2>} />
                   </Routes>
                 }
