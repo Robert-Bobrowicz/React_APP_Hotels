@@ -10,6 +10,7 @@ import ThemeContext from './components/context/themeContext';
 import AuthContext from './components/context/authContext';
 import ReducerContext from './components/context/reducerContext';
 import { reducer, initialState } from './reducer';
+import Hotel from './pages/Hotel';
 
 
 const hotelsDB = [
@@ -73,7 +74,7 @@ function App() {
                 content={
                   <Routes>
                     <Route exact path="/" element={<Home />} />
-                    <Route path="/hotel/:id" element={<h2> to moj hotel</h2>} />
+                    <Route path="/hotel/:id" element={<Hotel />} />
                   </Routes>
                 }
                 footer={<Footer />}
