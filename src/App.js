@@ -8,7 +8,8 @@ import Footer from './components/Footer/Footer';
 import Layout from './components/Layout/Layout';
 import ThemeContext from './components/context/themeContext';
 import AuthContext from './components/context/authContext';
-import {reducer, initialState} from './reducer';
+import ReducerContext from './components/context/reducerContext';
+import { reducer, initialState } from './reducer';
 
 
 const hotelsDB = [
@@ -43,7 +44,6 @@ function App() {
 
   const searchHandler = term => {
     console.log('szukam z poziomu App', term);
-    console.log(state.hotels);
     const newHotels = [...hotelsDB]
       .filter(el => el.name
         .toLowerCase()
@@ -61,23 +61,26 @@ function App() {
         }}>
         <ThemeContext.Provider value={state.color}>
           <div className="App">
+            <ReducerContext.Provider value={{
+              state: state,
+              dispatch: dispatch
+            }}>
+              <Layout
+                header={<Header
+                  onSearch={(term) => searchHandler(term)} />}
+                menu={<Menu />}
 
-            <Layout
-              header={<Header
-                onSearch={(term) => searchHandler(term)} />}
-              menu={<Menu />}
-
-              content={
-                <Routes>
-                  <Route exact path="/" element={
-                    <Home />
-                  } />
-                  <Route path="/hotel/:id" element={<h2> to moj hotel</h2>} />
-                </Routes>
-              }
-              footer={<Footer />}
-            />
-
+                content={
+                  <Routes>
+                    <Route exact path="/" element={
+                      <Home />
+                    } />
+                    <Route path="/hotel/:id" element={<h2> to moj hotel</h2>} />
+                  </Routes>
+                }
+                footer={<Footer />}
+              />
+            </ReducerContext.Provider>
           </div>
         </ThemeContext.Provider>
       </AuthContext.Provider>

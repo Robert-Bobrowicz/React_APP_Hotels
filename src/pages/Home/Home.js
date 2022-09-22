@@ -1,10 +1,11 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useEffect, useContext } from "react";
 import Hotels from "../../components/Hotels/Hotels";
 import BestHotel from '../../components/BestHotel/BestHotel';
 import LastSeenHotel from '../../components/Hotels/LastSeenHotel/LastSeenHotel';
 import useLocalStorage from '../../components/hooks/useLocalStorage';
 import LoadingIcon from "../../components/LoadingIcon/LoadingIcon";
 import useWebsiteTitle from '../../components/hooks/useWebSiteTitle';
+import ReducerContext from "../../components/context/reducerContext";
 
 const hotelsDB = [
     {
@@ -34,19 +35,18 @@ const hotelsDB = [
 ]
 
 export default function Home(props) {
-    const [hotels, setHotels] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [lastSeenHotel, setLastSeenHotel] = useLocalStorage('last-seen-hotel', null);
+    const reducer = useContext(ReducerContext);
 
     const getBestHotel = useCallback(() => {
-        if (!hotels.length) {
+        if (!reducer.state.hotels.length) {
             return null;
         } else {
-            return hotels.sort((a, b) =>
+            return reducer.state.hotels.sort((a, b) =>
                 a.rating > b.rating ? -1 : 1
             )[0];
         }
-    }, [hotels]);
+    }, []);
 
     const openHotel = (hotel) => {
         setLastSeenHotel(hotel);
@@ -60,12 +60,12 @@ export default function Home(props) {
 
     useEffect(() => {
         setTimeout(() => {
-            setHotels(hotelsDB);
-            setLoading(false);
+            reducer.dispatch({ type: 'set-hotels', hotels: hotelsDB });
+            reducer.dispatch({ type: 'set-loading', loading: false })
         }, 2000)
     }, [])
 
-    if (loading) {
+    if (reducer.state.loading) {
         return <LoadingIcon />
     }
 
@@ -74,7 +74,7 @@ export default function Home(props) {
             <h2>Hotels</h2>
             {lastSeenHotel ? <LastSeenHotel {...lastSeenHotel} onRemove={removeLastSeenHotel} /> : null}
             {getBestHotel() ? <BestHotel getBestHotel={getBestHotel} /> : null}
-            <Hotels onOpen={openHotel} hotels={hotels} />
+            <Hotels onOpen={openHotel} hotels={reducer.state.hotels} />
         </>
     )
 }
