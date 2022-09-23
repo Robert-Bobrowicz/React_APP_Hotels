@@ -3,7 +3,6 @@ import Hotels from "../../components/Hotels/Hotels";
 import BestHotel from '../../components/BestHotel/BestHotel';
 import LastSeenHotel from '../../components/Hotels/LastSeenHotel/LastSeenHotel';
 import useLocalStorage from '../../components/hooks/useLocalStorage';
-import LoadingIcon from "../../components/LoadingIcon/LoadingIcon";
 import useWebsiteTitle from '../../components/hooks/useWebSiteTitle';
 import ReducerContext from "../../components/context/reducerContext";
 

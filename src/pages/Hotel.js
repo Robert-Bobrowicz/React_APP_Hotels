@@ -5,7 +5,8 @@ import ReducerContext from "../components/context/reducerContext";
 
 export default function Hotel(props) {
     const params = useParams(); //inny zapis: const {id} = useParams();
-    // console.log(params) //zwraca listę parametrów, tu tylko id hotelu, ze ścieżki zdefiniowanej w App w Route
+    console.log(params); //zwraca listę parametrów, tu tylko id hotelu, ze ścieżki zdefiniowanej w App w Route
+
     const [hotel, setHotel] = useState({});
     const reducer = useContext(ReducerContext);
     // const [loading, setLoading] = useState(true);
