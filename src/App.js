@@ -11,6 +11,7 @@ import AuthContext from './components/context/authContext';
 import ReducerContext from './components/context/reducerContext';
 import { reducer, initialState } from './reducer';
 import Hotel from './pages/Hotel';
+import LoadingIcon from './components/LoadingIcon/LoadingIcon';
 
 
 const hotelsDB = [
@@ -72,10 +73,13 @@ function App() {
                 menu={<Menu />}
 
                 content={
-                  <Routes>
-                    <Route exact path="/" element={<Home />} />
-                    <Route path="/hotel/:id" element={<Hotel />} />
-                  </Routes>
+                  <>
+                    <Routes>
+                      <Route exact path="/" element={<Home />} />
+                      <Route path="/hotel/:id" element={<Hotel />} />
+                    </Routes>
+                    {state.loading ? <LoadingIcon /> : null}
+                  </>
                 }
                 footer={<Footer />}
               />

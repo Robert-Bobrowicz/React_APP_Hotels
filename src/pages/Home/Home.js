@@ -59,15 +59,17 @@ export default function Home(props) {
     useWebsiteTitle('Main page: Hotels');
 
     useEffect(() => {
+        reducer.dispatch({ type: 'set-loading', loading: true });
+
         setTimeout(() => {
             reducer.dispatch({ type: 'set-hotels', hotels: hotelsDB });
             reducer.dispatch({ type: 'set-loading', loading: false })
         }, 2000)
     }, [])
 
-    if (reducer.state.loading) {
-        return <LoadingIcon />
-    }
+    // if (reducer.state.loading) {
+    //     return <LoadingIcon />
+    // }
 
     return (
         <>
