@@ -14,6 +14,8 @@ import Hotel from './pages/Hotel';
 // import LoadingIcon from './components/LoadingIcon/LoadingIcon';
 import Search from './pages/Search/Search';
 import Profile from './pages/Profile/Profile';
+import ProfileDetails from "./pages/Profile/ProfileDetails";
+import MyHotels from "./pages/Profile/MyHotels";
 
 
 // const hotelsDB = [
@@ -80,7 +82,10 @@ function App() {
                       <Route exact path="/" element={<Home />} />
                       <Route path="/hotel/:id" element={<Hotel />} />
                       <Route path="/search/:term" element={<Search />} />
-                      <Route path="/profile" element={<Profile />} />
+                      <Route path="/profile" element={<Profile />}>
+                        <Route path="/profile" element={<ProfileDetails />} />
+                        <Route path="/profile/myhotels" element={<MyHotels />} />
+                      </Route>
                     </Routes>
                     {/* {state.loading ? <LoadingIcon /> : null} */}
                   </>
