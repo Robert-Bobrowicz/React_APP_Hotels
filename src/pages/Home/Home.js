@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useContext } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Hotels from "../../components/Hotels/Hotels";
 import BestHotel from '../../components/BestHotel/BestHotel';
 import LastSeenHotel from '../../components/Hotels/LastSeenHotel/LastSeenHotel';
 import useLocalStorage from '../../components/hooks/useLocalStorage';
 import useWebsiteTitle from '../../components/hooks/useWebSiteTitle';
-import ReducerContext from "../../components/context/reducerContext";
+// import ReducerContext from "../../components/context/reducerContext";
+import LoadingIcon from "../../components/LoadingIcon/LoadingIcon";
 
 const hotelsDB = [
     {
@@ -35,13 +36,15 @@ const hotelsDB = [
 
 export default function Home(props) {
     const [lastSeenHotel, setLastSeenHotel] = useLocalStorage('last-seen-hotel', null);
-    const reducer = useContext(ReducerContext);
+    // const reducer = useContext(ReducerContext);
+    const [loading, setLoading] = useState(true);
+    const [hotels, setHotels] = useState([]);
 
     const getBestHotel = useCallback(() => {
-        if (!reducer.state.hotels.length) {
+        if (!hotels.length) {
             return null;
         } else {
-            return reducer.state.hotels.sort((a, b) =>
+            return hotels.sort((a, b) =>
                 a.rating > b.rating ? -1 : 1
             )[0];
         }
@@ -58,11 +61,13 @@ export default function Home(props) {
     useWebsiteTitle('Main page: Hotels');
 
     useEffect(() => {
-        reducer.dispatch({ type: 'set-loading', loading: true });
+        // reducer.dispatch({ type: 'set-loading', loading: true });
 
         setTimeout(() => {
-            reducer.dispatch({ type: 'set-hotels', hotels: hotelsDB });
-            reducer.dispatch({ type: 'set-loading', loading: false })
+            // reducer.dispatch({ type: 'set-hotels', hotels: hotelsDB });
+            // reducer.dispatch({ type: 'set-loading', loading: false })
+            setHotels(hotelsDB);
+            setLoading(false);
         }, 2000)
     }, [])
 
@@ -70,12 +75,12 @@ export default function Home(props) {
     //     return <LoadingIcon />
     // }
 
-    return (
+    return loading ? <LoadingIcon /> : (
         <>
             <h2>Hotels</h2>
             {lastSeenHotel ? <LastSeenHotel {...lastSeenHotel} onRemove={removeLastSeenHotel} /> : null}
             {getBestHotel() ? <BestHotel getBestHotel={getBestHotel} /> : null}
-            <Hotels onOpen={openHotel} hotels={reducer.state.hotels} />
+            <Hotels onOpen={openHotel} hotels={hotels} />
         </>
     )
 }
