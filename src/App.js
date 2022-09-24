@@ -13,6 +13,7 @@ import { reducer, initialState } from './reducer';
 import Hotel from './pages/Hotel';
 // import LoadingIcon from './components/LoadingIcon/LoadingIcon';
 import Search from './pages/Search/Search';
+import Profile from './pages/Profile/Profile';
 
 
 // const hotelsDB = [
@@ -79,6 +80,7 @@ function App() {
                       <Route exact path="/" element={<Home />} />
                       <Route path="/hotel/:id" element={<Hotel />} />
                       <Route path="/search/:term" element={<Search />} />
+                      <Route path="/profile" element={<Profile />} />
                     </Routes>
                     {/* {state.loading ? <LoadingIcon /> : null} */}
                   </>

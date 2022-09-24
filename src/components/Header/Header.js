@@ -5,7 +5,7 @@ import styles from './Header.module.css';
 import ThemeContext from '../context/themeContext';
 import mousePosition from '../hoc/mousePosition';
 import InspiringQuote from '../InspiringQuote/InspiringQuote';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // import { withRouter } from 'react-router';
 
 
@@ -17,8 +17,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 function Header(props) {
     const [findHotel, setFindHotel] = useState('');
     const theme = useContext(ThemeContext);
-    // const { match, location, history } = props;
-    const location = useLocation();
+    // const { match, location, history } = props; // w wersji 6 react router useHistory zostało zamienione przez useNavigate
     const history = useNavigate();
 
     const inputRef = useRef();

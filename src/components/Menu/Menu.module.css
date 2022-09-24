@@ -9,6 +9,14 @@
     margin-right: 10px;
 }
 
+.menuItem a {
+    color: grey;
+}
+
+.menuItemActive {
+    text-decoration: underline;
+}
+
 .menuContainer {
     border: 1px solid #7f7f7f;
     margin: 10px 0;

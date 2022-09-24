@@ -2,7 +2,7 @@
 import styles from './Menu.module.css';
 // import AuthContext from "../context/authContext";
 import useAuth from "../hooks/useAuth";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function Menu() {
     // const auth = useContext(AuthContext);
@@ -19,16 +19,21 @@ function Menu() {
     }
 
     return (
-        <div className={styles.menuContainer}>
+        <div className={`${styles.menuContainer} breadcrumb`} >
             <ul className={styles.menu}>
                 <li className={styles.menuItem}>
                     {/* <a href='#Home'>Home</a><span > </span> */}
-                    <Link to='/'>Home</Link>
+                    <NavLink to='/' className={styles.menuItemActive}>Home</NavLink>
                 </li>
                 <li className={styles.menuItem}>
                     {/* {auth.isAuthenticated ? <button onClick={auth.logout} className="btn text-center">Log out</button>
                         : <button onClick={auth.login} className="btn text-center">Log in</button>} */}
-                    {auth ? <button onClick={logout} className="btn text-center">Log out</button>
+                    {auth ?
+                        <>
+                            <NavLink to='/profile' className={styles.menuItemActive}>Profile</NavLink>
+                            <button onClick={logout} className="btn text-center">Log out</button>
+                        </>
+
                         : <button onClick={login} className="btn text-center">Log in</button>}
                 </li>
             </ul>
