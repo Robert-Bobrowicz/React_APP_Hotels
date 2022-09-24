@@ -1,19 +1,25 @@
 import React, { useContext, useEffect, useState, useRef } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styles from './Header.module.css';
 // import { Button } from 'reactstrap';
 import ThemeContext from '../context/themeContext';
 import mousePosition from '../hoc/mousePosition';
 import InspiringQuote from '../InspiringQuote/InspiringQuote';
+import { useLocation, useNavigate } from 'react-router-dom';
+// import { withRouter } from 'react-router';
 
-const propTypes = {
-    onSearch: PropTypes.func.isRequired
-}
+
+// const propTypes = {
+//     onSearch: PropTypes.func.isRequired
+// }
 
 
 function Header(props) {
     const [findHotel, setFindHotel] = useState('');
     const theme = useContext(ThemeContext);
+    // const { match, location, history } = props;
+    const location = useLocation();
+    const history = useNavigate();
 
     const inputRef = useRef();
 
@@ -24,7 +30,8 @@ function Header(props) {
 
     function search() {
         console.log('szukam ...', findHotel);
-        props.onSearch(findHotel);
+        // props.onSearch(findHotel);
+        history(`/search/${findHotel}`,)
     }
 
     function updateHotelFound(e) {
@@ -58,6 +65,6 @@ function Header(props) {
     );
 }
 
-Header.propTypes = propTypes;
+// Header.propTypes = propTypes;
 
 export default mousePosition(Header);

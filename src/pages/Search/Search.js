@@ -1,6 +1,8 @@
-
+import { useParams } from "react-router-dom"
 
 export default function Search(props) {
+
+    const { term } = useParams();
 
     // const searchHandler = term => {
     //     console.log('szukam z poziomu App', term);
@@ -12,6 +14,6 @@ export default function Search(props) {
     // }
 
     return (
-        <h2>Search results</h2>
+        <h2>Search results for "{term}"</h2>
     )
 }
