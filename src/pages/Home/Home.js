@@ -40,16 +40,6 @@ export default function Home(props) {
     const [loading, setLoading] = useState(true);
     const [hotels, setHotels] = useState([]);
 
-    const getBestHotel = useCallback(() => {
-        if (!hotels.length) {
-            return null;
-        } else {
-            return hotels.sort((a, b) =>
-                a.rating > b.rating ? -1 : 1
-            )[0];
-        }
-    }, []);
-
     const openHotel = (hotel) => {
         setLastSeenHotel(hotel);
     }
@@ -70,6 +60,16 @@ export default function Home(props) {
             setLoading(false);
         }, 2000)
     }, [])
+
+    const getBestHotel = useCallback(() => {
+        if (!hotels.length) {
+            return null;
+        } else {
+            return hotels.sort((a, b) =>
+                a.rating > b.rating ? -1 : 1
+            )[0];
+        }
+    }, [hotels]);
 
     // if (reducer.state.loading) {
     //     return <LoadingIcon />

@@ -16,6 +16,7 @@ import Search from './pages/Search/Search';
 import Profile from './pages/Profile/Profile';
 import ProfileDetails from "./pages/Profile/ProfileDetails";
 import MyHotels from "./pages/Profile/MyHotels";
+import NotFound from './pages/404/NotFound';
 
 
 // const hotelsDB = [
@@ -86,6 +87,7 @@ function App() {
                         <Route path="/profile" element={<ProfileDetails />} />
                         <Route path="/profile/myhotels" element={<MyHotels />} />
                       </Route>
+                      <Route path="*" element={<NotFound />} />
                     </Routes>
                     {/* {state.loading ? <LoadingIcon /> : null} */}
                   </>
