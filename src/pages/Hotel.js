@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import useWebsiteTitle from "../components/hooks/useWebSiteTitle";
 import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
 // import ReducerContext from "../components/context/reducerContext";
 // import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
@@ -11,6 +12,7 @@ export default function Hotel(props) {
     const [hotel, setHotel] = useState(null);
     // const reducer = useContext(ReducerContext);
     const [loading, setLoading] = useState(true);
+    const setTitle = useWebsiteTitle();
 
     const fetchHotel = () => {
 
@@ -23,6 +25,7 @@ export default function Hotel(props) {
             image: ""
         });
         // reducer.dispatch({ type: 'set-loading', loading: false });
+        setTitle('Old Town');
         setLoading(false);
     }
 
