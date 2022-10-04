@@ -17,6 +17,7 @@ import Profile from './pages/Profile/Profile';
 import ProfileDetails from "./pages/Profile/ProfileDetails";
 import MyHotels from "./pages/Profile/MyHotels";
 import NotFound from './pages/404/NotFound';
+import Login from './pages/Auth/Login';
 
 
 // const hotelsDB = [
@@ -83,7 +84,8 @@ function App() {
                       <Route exact path="/" element={<Home />} />
                       <Route path="/hotel/:id" element={<Hotel />} />
                       <Route path="/search/:term" element={<Search />} />
-                      <Route path="/profile" element={<Profile />}>
+                      <Route path="/login" element={<Login />} />
+                      <Route path='/profile' element={state.isAuthenticated ? <Profile /> : <Login />}>
                         <Route path="/profile" element={<ProfileDetails />} />
                         <Route path="/profile/myhotels" element={<MyHotels />} />
                       </Route>
@@ -98,7 +100,7 @@ function App() {
           </div>
         </ThemeContext.Provider>
       </AuthContext.Provider>
-    </Router>
+    </Router >
   )
 }
 
