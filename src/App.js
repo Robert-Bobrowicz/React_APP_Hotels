@@ -18,6 +18,11 @@ import ProfileDetails from "./pages/Profile/ProfileDetails";
 import MyHotels from "./pages/Profile/MyHotels";
 import NotFound from './pages/404/NotFound';
 import Login from './pages/Auth/Login';
+import ErrorBoundary from './components/hoc/ErrorBoundary';
+
+// const Profile = lazy(() => {
+//   import('./pages/Profile/Profile');
+// })
 
 
 // const hotelsDB = [
@@ -73,29 +78,34 @@ function App() {
               state: state,
               dispatch: dispatch
             }}>
-              <Layout
-                header={<Header />}
-                // onSearch={(term) => searchHandler(term)} />}
-                menu={<Menu />}
 
-                content={
-                  <>
-                    <Routes>
-                      <Route exact path="/" element={<Home />} />
-                      <Route path="/hotel/:id" element={<Hotel />} />
-                      <Route path="/search/:term" element={<Search />} />
-                      <Route path="/login" element={<Login />} />
-                      <Route path='/profile' element={state.isAuthenticated ? <Profile /> : <Login />}>
-                        <Route path="/profile" element={<ProfileDetails />} />
-                        <Route path="/profile/myhotels" element={<MyHotels />} />
-                      </Route>
-                      <Route path="*" element={<NotFound />} />
-                    </Routes>
-                    {/* {state.loading ? <LoadingIcon /> : null} */}
-                  </>
-                }
-                footer={<Footer />}
-              />
+              <ErrorBoundary>
+                <Layout
+                  header={<Header />}
+                  // onSearch={(term) => searchHandler(term)} />}
+                  menu={<Menu />}
+
+                  content={
+                    <>
+
+                      <Routes>
+                        <Route exact path="/" element={<Home />} />
+                        <Route path="/hotel/:id" element={<Hotel />} />
+                        <Route path="/search/:term" element={<Search />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path='/profile' element={state.isAuthenticated ? <Profile /> : <Login />}>
+                          <Route path="/profile" element={<ProfileDetails />} />
+                          <Route path="/profile/myhotels" element={<MyHotels />} />
+                        </Route>
+                        <Route path="*" element={<NotFound />} />
+                      </Routes>
+
+                      {/* {state.loading ? <LoadingIcon /> : null} */}
+                    </>
+                  }
+                  footer={<Footer />}
+                />
+              </ErrorBoundary>
             </ReducerContext.Provider>
           </div>
         </ThemeContext.Provider>
