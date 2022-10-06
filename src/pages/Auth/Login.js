@@ -27,7 +27,7 @@ export default function Login(props) {
                 setValid(false);
                 setPassword('');
             }
-            setLoading(false);
+            // setLoading(false);
         }, 1500);
 
         console.log(auth, email, password);
