@@ -1,6 +1,7 @@
 import { useState } from "react"
 import useAuth from "../../components/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import LoadingButton from "../../components/LoginButton/LoginButton";
 
 export default function Login(props) {
 
@@ -22,7 +23,7 @@ export default function Login(props) {
             navigate('/');
         }, 1500);
 
-        console.log(email, password);
+        console.log(auth, email, password);
     }
 
     return (
@@ -48,13 +49,7 @@ export default function Login(props) {
                 </div>
                 {
                     loading
-                        ? (
-                            <button className="btn btn-primary" type="button" disabled>
-                                <span className="sr-only">
-                                    Login data check ...
-                                </span>
-                            </button>
-                        )
+                        ? <LoadingButton />
                         : <button className="btn btn-primary mt-2">Login</button>
                 }
 
