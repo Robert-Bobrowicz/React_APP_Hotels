@@ -11,6 +11,7 @@ export default function Login(props) {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [valid, setValid] = useState(null);
 
     const submit = (e) => {
         e.preventDefault();
@@ -19,8 +20,14 @@ export default function Login(props) {
 
         setTimeout(() => {
             //login process
-            setAuth(true);
-            navigate('/');
+            if (true) {
+                setAuth(true);
+                navigate('/');
+            } else {
+                setValid(false);
+                setPassword('');
+            }
+            setLoading(false);
         }, 1500);
 
         console.log(auth, email, password);
@@ -29,6 +36,12 @@ export default function Login(props) {
     return (
         <div>
             <h2>Login</h2>
+            {valid === false ?
+                (
+                    <div className="alert alert-danger">Invalid login data</div>
+                ) : null
+
+            }
             <form onSubmit={submit}>
                 <div className="form-groupmt-2">
                     <label>Email</label>
