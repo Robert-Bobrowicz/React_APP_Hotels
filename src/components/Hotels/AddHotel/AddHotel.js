@@ -30,7 +30,7 @@ export default function AddHotel(props) {
                     <div className="invalid-feedback">Error</div>
 
                     <h6>Amenities</h6>
-                    <div className="form-group">
+                    <div className="form-group mb-4">
                         <label className="me-4">TV <input type="checkbox" /></label>
                         <label className="me-4">WiFi <input type="checkbox" /></label>
                         <label className="me-4">Private bathroom <input type="checkbox" /></label>
@@ -38,7 +38,7 @@ export default function AddHotel(props) {
                     </div>
 
                     <div className="form-group mt-2">
-                        <label className="me-4">Select picture</label>
+                        <h6 className="me-2">Select picture:</h6>
                         <input type="file" />
                     </div>
                     
