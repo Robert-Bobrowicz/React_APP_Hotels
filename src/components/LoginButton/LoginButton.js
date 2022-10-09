@@ -1,9 +1,13 @@
 export default function LoadingButton(props) {
+
     return (
-        <button className="btn btn-primary mt-2" type="button" disabled>
-            <span className="sr-only">
-                processing request ...
-            </span>
-        </button>
+        props.loading ?
+            (<button className="btn btn-success mt-2 sr-only" type="button" disabled>
+                <span>
+                    processing request ...
+                </span>
+            </button >)
+            :
+            <button className="btn btn-success mt-2">Save</button>
     )
 }

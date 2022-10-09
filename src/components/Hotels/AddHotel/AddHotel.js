@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import LoadingButton from "../../../components/LoginButton/LoginButton";
 
 export default function AddHotel(props) {
     const imageRef = useRef();
@@ -10,12 +11,31 @@ export default function AddHotel(props) {
         amenities: [],
         picture: null
     });
+    const [loading, setLoading] = useState(false);
 
     const submit = (e) => {
         e.preventDefault();
-        console.log(form)
-        console.log(imageRef.current)
+        setLoading(true);
 
+        //save data to backend
+        setTimeout(() => {
+            setLoading(false);
+        }, 1500)
+
+    }
+
+    const changeFeatureHandler = (e) => {
+        const value = e.target.value;
+        const isChecked = e.target.checked;
+        
+
+        if (isChecked) { console.log(form.amenities, value)
+            var newAmenities = [...form.amenities, value];
+            setForm({ ...form, amenities: newAmenities }); 
+        } else {
+            newAmenities = form.amenities.filter(x => x !== value);
+            setForm({ ...form, features: newAmenities });
+        }
     }
 
     return (
@@ -27,6 +47,7 @@ export default function AddHotel(props) {
                     <input
                         type="text"
                         value={form.name}
+                        onChange={e => setForm({ ...form, name: e.target.value })}
                         className={`form-control ${false ? 'is-invalid' : ''} mb-4`}
                         placeholder="enter new hotel name" />
                     <div className="invalid-feedback">Error</div>
@@ -35,6 +56,7 @@ export default function AddHotel(props) {
                     <textarea
                         type="text"
                         value={form.description}
+                        onChange={e => setForm({ ...form, description: e.target.value })}
                         className={`form-control ${false ? 'is-invalid' : ''} mb-4`}
                     />
                     <div className="invalid-feedback">Error</div>
@@ -43,12 +65,16 @@ export default function AddHotel(props) {
                     <input
                         type="text"
                         value={form.city}
+                        onChange={e => setForm({ ...form, city: e.target.value })}
                         className={`form-control ${false ? 'is-invalid' : ''} mb-4`}
                         placeholder="enter city name" />
                     <div className="invalid-feedback">Error</div>
 
                     <label>Number of rooms</label>
-                    <select value={form.rooms} className="form-control mb-4">
+                    <select
+                        value={form.rooms}
+                        onChange={e => setForm({ ...form, rooms: e.target.value })}
+                        className="form-control mb-4">
                         <option value='1'>1</option>
                         <option value='2'>2</option>
                         <option value='3'>3</option>
@@ -64,6 +90,7 @@ export default function AddHotel(props) {
                                 <input
                                     type="checkbox"
                                     value="tv"
+                                    onChange={changeFeatureHandler}
                                     checked={form.amenities.find(x => x === 'tv')} />
                             </span>
                         </label>
@@ -72,7 +99,8 @@ export default function AddHotel(props) {
                                 <input
                                     type="checkbox"
                                     value="wifi"
-                                    checked={form.amenities.find(x => x === 'wifi')} />
+                                    checked={form.amenities.find(x => x === 'wifi')}
+                                    onChange={changeFeatureHandler} />
                             </span>
                         </label>
                         <label className="me-4">Private bathroom
@@ -80,7 +108,8 @@ export default function AddHotel(props) {
                                 <input
                                     type="checkbox"
                                     value="private_bathroom"
-                                    checked={form.amenities.find(x => x === 'private_bathroom')} />
+                                    checked={form.amenities.find(x => x === 'private_bathroom')}
+                                    onChange={changeFeatureHandler} />
                             </span>
                         </label>
                         <label className="me-4">Washing machine
@@ -88,17 +117,21 @@ export default function AddHotel(props) {
                                 <input
                                     type="checkbox"
                                     value="washing_machine"
-                                    checked={form.amenities.find(x => x === 'twashing_machine')} />
+                                    checked={form.amenities.find(x => x === 'twashing_machine')}
+                                    onChange={changeFeatureHandler} />
                             </span>
                         </label>
                     </div>
 
                     <div className="form-group mt-2">
                         <h6 className="me-2">Select picture:</h6>
-                        <input type="file" ref={imageRef}/>
+                        <input
+                            type="file"
+                            onChange={e => setForm({ ...form, image: e.target.files })}
+                            ref={imageRef} />
                     </div>
 
-                    <button className="btn btn-primary mt-4">Add hotel</button>
+                    <LoadingButton className="btn btn-primary mt-4" loading={loading}>Add hotel</LoadingButton>
 
                 </form>
             </div>
