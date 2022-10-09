@@ -3,6 +3,7 @@ import { useState } from "react";
 export default function AddHotel(props) {
     const [form, setForm] = useState({
         name: '',
+        description: '',
         city: '',
         rooms: 2,
         amenities: [],
@@ -20,6 +21,14 @@ export default function AddHotel(props) {
                         value={form.name}
                         className={`form-control ${false ? 'is-invalid' : ''} mb-4`}
                         placeholder="enter new hotel name" />
+                    <div className="invalid-feedback">Error</div>
+
+                    <label>Description</label>
+                    <textarea
+                        type="text"
+                        value={form.description}
+                        className={`form-control ${false ? 'is-invalid' : ''} mb-4`}
+                    />
                     <div className="invalid-feedback">Error</div>
 
                     <label>City</label>
@@ -42,10 +51,38 @@ export default function AddHotel(props) {
 
                     <h6>Amenities</h6>
                     <div className="form-group mb-4">
-                        <label className="me-4">TV <input type="checkbox" /></label>
-                        <label className="me-4">WiFi <input type="checkbox" /></label>
-                        <label className="me-4">Private bathroom <input type="checkbox" /></label>
-                        <label className="me-4">Washing machine <input type="checkbox" /></label>
+                        <label className="me-4">TV
+                            <span className="ms-1">
+                                <input
+                                    type="checkbox"
+                                    value="tv"
+                                    checked={form.amenities.find(x => x === 'tv')} />
+                            </span>
+                        </label>
+                        <label className="me-4">WiFi
+                            <span className="ms-1">
+                                <input
+                                    type="checkbox"
+                                    value="wifi"
+                                    checked={form.amenities.find(x => x === 'wifi')} />
+                            </span>
+                        </label>
+                        <label className="me-4">Private bathroom
+                            <span className="ms-1">
+                                <input
+                                    type="checkbox"
+                                    value="private_bathroom"
+                                    checked={form.amenities.find(x => x === 'private_bathroom')} />
+                            </span>
+                        </label>
+                        <label className="me-4">Washing machine
+                            <span className="ms-1">
+                                <input
+                                    type="checkbox"
+                                    value="washing_machine"
+                                    checked={form.amenities.find(x => x === 'twashing_machine')} />
+                            </span>
+                        </label>
                     </div>
 
                     <div className="form-group mt-2">
