@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function AddHotel(props) {
+    const imageRef = useRef();
     const [form, setForm] = useState({
         name: '',
         description: '',
@@ -10,11 +11,18 @@ export default function AddHotel(props) {
         picture: null
     });
 
+    const submit = (e) => {
+        e.preventDefault();
+        console.log(form)
+        console.log(imageRef.current)
+
+    }
+
     return (
         <div className="card mb-4">
             <div className="card-header">New hotel</div>
             <div className="card-body">
-                <form>
+                <form onSubmit={submit}>
                     <label>Hotel name</label>
                     <input
                         type="text"
@@ -87,8 +95,10 @@ export default function AddHotel(props) {
 
                     <div className="form-group mt-2">
                         <h6 className="me-2">Select picture:</h6>
-                        <input type="file" />
+                        <input type="file" ref={imageRef}/>
                     </div>
+
+                    <button className="btn btn-primary mt-4">Add hotel</button>
 
                 </form>
             </div>
