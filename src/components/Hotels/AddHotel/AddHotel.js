@@ -132,8 +132,7 @@ export default function AddHotel(props) {
                     </div>
 
                     <LoadingButton className="btn btn-primary mt-4" loading={loading}>Add hotel</LoadingButton>
-
-                </form>
+              </form>
             </div>
         </div>
     )
