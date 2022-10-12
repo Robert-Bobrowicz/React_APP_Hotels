@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import LoadingButton from "../../../components/LoginButton/LoginButton";
+import Input from "../../Input/Input";
 
 export default function AddHotel(props) {
     const imageRef = useRef();
@@ -27,11 +28,12 @@ export default function AddHotel(props) {
     const changeFeatureHandler = (e) => {
         const value = e.target.value;
         const isChecked = e.target.checked;
-        
 
-        if (isChecked) { console.log(form.amenities, value)
+
+        if (isChecked) {
+            console.log(form.amenities, value)
             var newAmenities = [...form.amenities, value];
-            setForm({ ...form, amenities: newAmenities }); 
+            setForm({ ...form, amenities: newAmenities });
         } else {
             newAmenities = form.amenities.filter(x => x !== value);
             setForm({ ...form, features: newAmenities });
@@ -51,6 +53,8 @@ export default function AddHotel(props) {
                         className={`form-control ${false ? 'is-invalid' : ''} mb-4`}
                         placeholder="enter new hotel name" />
                     <div className="invalid-feedback">Error</div>
+
+                    <Input />
 
                     <label>Description</label>
                     <textarea
@@ -132,7 +136,7 @@ export default function AddHotel(props) {
                     </div>
 
                     <LoadingButton className="btn btn-primary mt-4" loading={loading}>Add hotel</LoadingButton>
-              </form>
+                </form>
             </div>
         </div>
     )
