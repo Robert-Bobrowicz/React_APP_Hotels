@@ -58,7 +58,7 @@ export default function AddHotel(props) {
                         label="Hotel name"
                         value={form.name}
                         onChange={value => setForm({ ...form, name: value })}
-                        isValid={true}
+                        error=""
                         showError={false}
                     />
 
@@ -75,7 +75,7 @@ export default function AddHotel(props) {
                         label="Description"
                         value={form.description}
                         onChange={value => setForm({ ...form, description: value })}
-                        isValid={true}
+                        error=""
                         showError={false}
                     />
 
@@ -92,11 +92,11 @@ export default function AddHotel(props) {
                         label="City"
                         value={form.city}
                         onChange={value => setForm({ ...form, city: value })}
-                        isValid={true}
+                        error=""
                         showError={false}
                     />
 
-                    <label>Number of rooms</label>
+                    {/* <label>Number of rooms</label>
                     <select
                         value={form.rooms}
                         onChange={e => setForm({ ...form, rooms: e.target.value })}
@@ -107,10 +107,35 @@ export default function AddHotel(props) {
                         <option value='4'>4</option>
                         <option value='5'>5</option>
                     </select>
-                    <div className="invalid-feedback">Error</div>
+                    <div className="invalid-feedback">Error</div> */}
+                    <Input
+                        label="Number of rooms"
+                        type="select"
+                        value={form.rooms}
+                        onChange={value => setForm({ ...form, rooms: value })}
+                        options={[
+                            {
+                                value: 1, label: 1
+                            },
+                            {
+                                value: 2, label: 2
+                            },
+                            {
+                                value: 3, label: 3
+                            },
+                            {
+                                value: 4, label: 4
+                            },
+                            {
+                                value: 5, label: 5
+                            }
+                        ]}
+                        error=""
+                        showError={false}
+                    />
 
                     <h6>Amenities</h6>
-                    <div className="form-group mb-4">
+                    {/* <div className="form-group mb-4">
                         <label className="me-4">TV
                             <span className="ms-1">
                                 <input
@@ -147,7 +172,28 @@ export default function AddHotel(props) {
                                     onChange={changeFeatureHandler} />
                             </span>
                         </label>
-                    </div>
+                    </div> */}
+                    <Input
+                        type="checkbox"
+                        value={form.amenities}
+                        onChange={value => setForm({ ...form, amenities: value })}
+                        options={[
+                            {
+                                value: "tv", label: "tv"
+                            },
+                            {
+                                value: "wifi", label: "wifi"
+                            },
+                            {
+                                value: "private bathroom", label: "private bathroom"
+                            },
+                            {
+                                value: "washing mashine", label: "washing machine"
+                            }
+                        ]}
+                        error=""
+                        showError={false}
+                    />
 
                     <div className="form-group mt-2">
                         <h6 className="me-2">Select picture:</h6>
