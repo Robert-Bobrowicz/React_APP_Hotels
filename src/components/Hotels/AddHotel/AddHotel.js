@@ -45,34 +45,56 @@ export default function AddHotel(props) {
             <div className="card-header">New hotel</div>
             <div className="card-body">
                 <form onSubmit={submit}>
-                    <label>Hotel name</label>
-                    <input
+                    {/* <label>Hotel name</label> */}
+                    {/* <input
                         type="text"
                         value={form.name}
                         onChange={e => setForm({ ...form, name: e.target.value })}
                         className={`form-control ${false ? 'is-invalid' : ''} mb-4`}
                         placeholder="enter new hotel name" />
-                    <div className="invalid-feedback">Error</div>
+                    <div className="invalid-feedback">Error</div> */}
 
-                    <Input />
+                    <Input
+                        label="Hotel name"
+                        value={form.name}
+                        onChange={value => setForm({ ...form, name: value })}
+                        isValid={true}
+                        showError={false}
+                    />
 
-                    <label>Description</label>
+                    {/* <label>Description</label>
                     <textarea
                         type="text"
                         value={form.description}
                         onChange={e => setForm({ ...form, description: e.target.value })}
                         className={`form-control ${false ? 'is-invalid' : ''} mb-4`}
                     />
-                    <div className="invalid-feedback">Error</div>
+                    <div className="invalid-feedback">Error</div> */}
 
-                    <label>City</label>
+                    <Input
+                        label="Description"
+                        value={form.description}
+                        onChange={value => setForm({ ...form, description: value })}
+                        isValid={true}
+                        showError={false}
+                    />
+
+                    {/* <label>City</label>
                     <input
                         type="text"
                         value={form.city}
                         onChange={e => setForm({ ...form, city: e.target.value })}
                         className={`form-control ${false ? 'is-invalid' : ''} mb-4`}
                         placeholder="enter city name" />
-                    <div className="invalid-feedback">Error</div>
+                    <div className="invalid-feedback">Error</div> */}
+
+                    <Input
+                        label="City"
+                        value={form.city}
+                        onChange={value => setForm({ ...form, city: value })}
+                        isValid={true}
+                        showError={false}
+                    />
 
                     <label>Number of rooms</label>
                     <select
