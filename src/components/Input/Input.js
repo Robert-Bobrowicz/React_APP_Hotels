@@ -17,6 +17,21 @@ function Input(props) {
         )
     }
 
+    if (props.type === "textarea") {
+        return (
+            <div className="form-group">
+                <label>Description</label>
+                    <textarea
+                        type="text"
+                        value={props.description}
+                        onChange={e => props.onChange(e.target.value)}
+                        className={`form-control ${false ? 'is-invalid' : ''} mb-4`}
+                    />
+                    <div className="invalid-feedback">Error</div>
+            </div>
+        )
+    }
+
     if (props.type === "select") {
         return (
             <div className="form-group">
@@ -34,26 +49,27 @@ function Input(props) {
         )
     }
 
-    if (props.type === "checkbox") {
-        const changeFeatureHandler = e => {
-            const value = e.target.value;
-            const isChecked = e.target.checked;
+    const changeFeatureHandler = e => {
+        const value = e.target.value;
+        const isChecked = e.target.checked;
 
-            if (isChecked) {
-                const newAmenties = [...props.value, value];
-                props.onChange(newAmenties);
-            } else {
-                const newAmenities = props.value.filter(x => !x === value);
-                props.onChange(newAmenities);
-            }
+        if (isChecked) {
+            const newAmenties = [...props.value, value];
+            props.onChange(newAmenties);
+        } else {
+            const newAmenities = props.value.filter(x => !x === value);
+            props.onChange(newAmenities);
         }
+    }
+
+    if (props.type === "checkbox") {
 
         return (
             <div className="form-group mb-4">
                 {props.options.map(option => {
                     return (
                         <div className="custom-control custom-checkbox" key={option.value}>
-                            <label className="me-4" forHtml={option.value}>{option.label}
+                            <label className="me-4">{option.label}
                                 <span className="ms-1">
                                     <input
                                         type="checkbox"

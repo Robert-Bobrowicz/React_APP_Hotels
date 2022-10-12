@@ -25,20 +25,20 @@ export default function AddHotel(props) {
 
     }
 
-    const changeFeatureHandler = (e) => {
-        const value = e.target.value;
-        const isChecked = e.target.checked;
+    // const changeFeatureHandler = (e) => {
+    //     const value = e.target.value;
+    //     const isChecked = e.target.checked;
 
 
-        if (isChecked) {
-            console.log(form.amenities, value)
-            var newAmenities = [...form.amenities, value];
-            setForm({ ...form, amenities: newAmenities });
-        } else {
-            newAmenities = form.amenities.filter(x => x !== value);
-            setForm({ ...form, features: newAmenities });
-        }
-    }
+    //     if (isChecked) {
+    //         console.log(form.amenities, value)
+    //         var newAmenities = [...form.amenities, value];
+    //         setForm({ ...form, amenities: newAmenities });
+    //     } else {
+    //         newAmenities = form.amenities.filter(x => x !== value);
+    //         setForm({ ...form, features: newAmenities });
+    //     }
+    // }
 
     return (
         <div className="card mb-4">
@@ -73,6 +73,7 @@ export default function AddHotel(props) {
 
                     <Input
                         label="Description"
+                        type="textarea"
                         value={form.description}
                         onChange={value => setForm({ ...form, description: value })}
                         error=""
