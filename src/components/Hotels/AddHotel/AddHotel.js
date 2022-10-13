@@ -78,8 +78,8 @@ export default function AddHotel(props) {
     //     }
     // }
 
-    const changehandler = (value, fieldName) => {
-        setForm({ ...form, [fieldName]: { ...form[fieldName], value: value } })
+    const changeHandler = (value, fieldName) => {
+        setForm({ ...form, [fieldName]: {...form[fieldName], value} })
     };
 
     return (
@@ -99,7 +99,7 @@ export default function AddHotel(props) {
                     <Input
                         label="Hotel name"
                         value={form.name.value}
-                        onChange={val => changehandler(val, 'name')}
+                        onChange={val => changeHandler(val, 'name')}
                         error=""
                         showError={false}
                     />
@@ -117,7 +117,7 @@ export default function AddHotel(props) {
                         label="Description"
                         type="textarea"
                         value={form.description.value}
-                        onChange={value => setForm({ ...form, description: value })}
+                        onChange={val => changeHandler(val, 'description')}
                         error=""
                         showError={false}
                     />
@@ -134,7 +134,7 @@ export default function AddHotel(props) {
                     <Input
                         label="City"
                         value={form.city.value}
-                        onChange={value => setForm({ ...form, city: value })}
+                        onChange={val => changeHandler(val, 'city')}
                         error=""
                         showError={false}
                     />
@@ -155,7 +155,7 @@ export default function AddHotel(props) {
                         label="Number of rooms"
                         type="select"
                         value={form.rooms.value}
-                        onChange={value => setForm({ ...form, rooms: value })}
+                        onChange={val => changeHandler(val, 'romms')}
                         options={[
                             {
                                 value: 1, label: 1
@@ -219,7 +219,7 @@ export default function AddHotel(props) {
                     <Input
                         type="checkbox"
                         value={form.amenities.value}
-                        onChange={value => setForm({ ...form, amenities: value })}
+                        onChange={val => changeHandler(val, 'amenities')}
                         options={[
                             {
                                 value: "tv", label: "tv"
@@ -240,7 +240,7 @@ export default function AddHotel(props) {
 
                     <Input
                         type="file"
-                        onChange={value => setForm({ ...form, image: value })}
+                        onChange={val => changeHandler(val, 'image')}
                     />
                     {/* <div className="form-group mt-2">
                         <h6 className="me-2">Select picture:</h6>
