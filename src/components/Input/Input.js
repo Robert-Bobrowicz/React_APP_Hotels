@@ -21,13 +21,13 @@ function Input(props) {
         return (
             <div className="form-group">
                 <label>Description</label>
-                    <textarea
-                        type="text"
-                        value={props.description}
-                        onChange={e => props.onChange(e.target.value)}
-                        className={`form-control ${false ? 'is-invalid' : ''} mb-4`}
-                    />
-                    <div className="invalid-feedback">Error</div>
+                <textarea
+                    type="text"
+                    value={props.description}
+                    onChange={e => props.onChange(e.target.value)}
+                    className={`form-control ${false ? 'is-invalid' : ''} mb-4`}
+                />
+                <div className="invalid-feedback">Error</div>
             </div>
         )
     }
@@ -76,7 +76,7 @@ function Input(props) {
                                         value={option.value}
                                         className="custom-control-input"
                                         onChange={changeFeatureHandler}
-                                        checked={props.value.find(x => x === option.value)} />
+                                        checked={props.value.find(x => x === option.value) || false} />
                                 </span>
                             </label>
                         </div>
@@ -131,6 +131,18 @@ function Input(props) {
                         </span>
                     </label>
                 </div> */}
+            </div>
+        )
+    }
+
+    if (props.type === "file") {
+        return (
+            <div className="form-group mt-2">
+                <h6 className="me-2">Select picture:</h6>
+                <input
+                    type="file"
+                    onChange={e => props.onChange(e.target.value)}
+                />
             </div>
         )
     }

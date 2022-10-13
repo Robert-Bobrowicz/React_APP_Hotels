@@ -1,9 +1,9 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import LoadingButton from "../../../components/LoginButton/LoginButton";
 import Input from "../../Input/Input";
 
 export default function AddHotel(props) {
-    const imageRef = useRef();
+    // const imageRef = useRef();
     const [form, setForm] = useState({
         name: '',
         description: '',
@@ -196,13 +196,17 @@ export default function AddHotel(props) {
                         showError={false}
                     />
 
-                    <div className="form-group mt-2">
+                    <Input
+                        type="file"
+                        onChange={value => setForm({ ...form, image: value })}
+                    />
+                    {/* <div className="form-group mt-2">
                         <h6 className="me-2">Select picture:</h6>
                         <input
                             type="file"
                             onChange={e => setForm({ ...form, image: e.target.files })}
                             ref={imageRef} />
-                    </div>
+                    </div> */}
 
                     <LoadingButton className="btn btn-primary mt-4" loading={loading}>Add hotel</LoadingButton>
                 </form>
