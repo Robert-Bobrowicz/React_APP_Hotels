@@ -79,7 +79,15 @@ export default function AddHotel(props) {
     // }
 
     const changeHandler = (value, fieldName) => {
-        setForm({ ...form, [fieldName]: {...form[fieldName], value} })
+        setForm({
+            ...form,
+            [fieldName]: {
+                ...form[fieldName],
+                value,
+                showError: true,
+                error: "Required"
+            }
+        })
     };
 
     return (
@@ -100,8 +108,8 @@ export default function AddHotel(props) {
                         label="Hotel name"
                         value={form.name.value}
                         onChange={val => changeHandler(val, 'name')}
-                        error=""
-                        showError={false}
+                        error={form.name.error}
+                        showError={form.name.showError}
                     />
 
                     {/* <label>Description</label>
@@ -118,8 +126,8 @@ export default function AddHotel(props) {
                         type="textarea"
                         value={form.description.value}
                         onChange={val => changeHandler(val, 'description')}
-                        error=""
-                        showError={false}
+                        error={form.description.error}
+                        showError={form.description.showError}
                     />
 
                     {/* <label>City</label>
@@ -135,8 +143,8 @@ export default function AddHotel(props) {
                         label="City"
                         value={form.city.value}
                         onChange={val => changeHandler(val, 'city')}
-                        error=""
-                        showError={false}
+                        error={form.city.error}
+                        showError={form.city.showError}
                     />
 
                     {/* <label>Number of rooms</label>
@@ -173,8 +181,8 @@ export default function AddHotel(props) {
                                 value: 5, label: 5
                             }
                         ]}
-                        error=""
-                        showError={false}
+                        error={form.rooms.error}
+                        showError={form.rooms.showError}
                     />
 
                     <h6>Amenities</h6>
@@ -234,8 +242,8 @@ export default function AddHotel(props) {
                                 value: "washing mashine", label: "washing machine"
                             }
                         ]}
-                        error=""
-                        showError={false}
+                        error={form.amenities.error}
+                        showError={form.amenities.showError}
                     />
 
                     <Input
