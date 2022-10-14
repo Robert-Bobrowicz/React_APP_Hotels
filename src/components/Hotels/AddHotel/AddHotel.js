@@ -1,6 +1,7 @@
 import { useState } from "react";
 import LoadingButton from "../../../components/LoginButton/LoginButton";
 import Input from "../../Input/Input";
+import formValidate from "../../../helpers/formValidate";
 
 export default function AddHotel(props) {
     // const imageRef = useRef();
@@ -79,13 +80,15 @@ export default function AddHotel(props) {
     // }
 
     const changeHandler = (value, fieldName) => {
+        const { error } = formValidate(form[fieldName].rules, value);
+
         setForm({
             ...form,
             [fieldName]: {
                 ...form[fieldName],
                 value,
                 showError: true,
-                error: "Required"
+                error: error
             }
         })
     };
