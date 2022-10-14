@@ -163,7 +163,7 @@ export default function AddHotel(props) {
                         label="Number of rooms"
                         type="select"
                         value={form.rooms.value}
-                        onChange={val => changeHandler(val, 'romms')}
+                        onChange={val => changeHandler(val, 'rooms')}
                         options={[
                             {
                                 value: 1, label: 1

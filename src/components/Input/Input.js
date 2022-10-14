@@ -3,13 +3,13 @@
 function Input(props) {
     if (props.type === "text") {
         return (
-            <div className="form-group">
+            <div className="form-group mb-4">
                 <label>{props.label} </label>
                 <input
                     type={props.type}
                     value={props.value}
                     onChange={e => props.onChange(e.target.value)}
-                    className={`form-control ${props.error && props.showError ? 'is-invalid' : ''} mb-4`}
+                    className={`form-control ${props.error && props.showError ? 'is-invalid' : ''}`}
                     placeholder={`enter ${props.label}`}
                 />
                 <div className="invalid-feedback">{props.error}</div>
@@ -19,27 +19,27 @@ function Input(props) {
 
     if (props.type === "textarea") {
         return (
-            <div className="form-group">
+            <div className="form-group mb-4">
                 <label>Description</label>
                 <textarea
                     type="text"
                     value={props.description}
                     onChange={e => props.onChange(e.target.value)}
-                    className={`form-control ${false ? 'is-invalid' : ''} mb-4`}
+                    className={`form-control ${props.error && props.showError ? 'is-invalid' : ''}`}
                 />
-                <div className="invalid-feedback">Error</div>
+                <div className="invalid-feedback">{props.error}</div>
             </div>
         )
     }
 
     if (props.type === "select") {
         return (
-            <div className="form-group">
+            <div className="form-group mb-4">
                 <label>{props.label}</label>
                 <select
                     value={props.rooms}
                     onChange={e => props.onChange(e.target.value)}
-                    className={`form-control ${props.error && props.showError ? 'is-invalid' : ''} mb-4`}>
+                    className={`form-control ${props.error && props.showError ? 'is-invalid' : ''}`}>
                     {props.options.map(option =>
                         <option value={option.value} key={option.value}>{option.label}</option>
                     )}
