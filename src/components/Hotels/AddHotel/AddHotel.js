@@ -257,7 +257,7 @@ export default function AddHotel(props) {
                         <h6 className="me-2">Select picture:</h6>
                         <input
                             type="file"
-                            onChange={e => setForm({ ...form, image: e.target.files })}
+                            onChange={e => setForm({ ...form, picture: e.target.files })}
                             ref={imageRef} />
                     </div> */}
 
