@@ -251,7 +251,7 @@ export default function AddHotel(props) {
 
                     <Input
                         type="file"
-                        onChange={val => changeHandler(val, 'image')}
+                        onChange={val => changeHandler(val, 'picture')}
                     />
                     {/* <div className="form-group mt-2">
                         <h6 className="me-2">Select picture:</h6>
