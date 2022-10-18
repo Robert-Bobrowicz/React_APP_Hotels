@@ -31,7 +31,7 @@ export default function AddHotel(props) {
             value: '',
             error: '',
             showError: false,
-            rules: ['required']
+            rules: ['required', { rule: 'min', length: 4 }]
         },
         rooms: {
             value: '',
@@ -80,7 +80,7 @@ export default function AddHotel(props) {
     // }
 
     const changeHandler = (value, fieldName) => {
-        const { error } = formValidate(form[fieldName].rules, value);
+        const error = formValidate(form[fieldName].rules, value);
 
         setForm({
             ...form,

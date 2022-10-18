@@ -13,7 +13,7 @@ export default function formValidate(rules = [], value) {   //jako parametr przy
         const rule = rules[i];
 
         if (rule instanceof Object) {
-            const errorMessage = availableRules[rule.rule](value, rule.length);
+            const errorMessage = availableRules[rule.rule](value, rule);
             if (errorMessage) {
                 return errorMessage;
             }
@@ -25,4 +25,13 @@ export default function formValidate(rules = [], value) {   //jako parametr przy
         }
     }
     return '';
+
+    // let error = '';
+    // rules.forEach(rule => {
+    //     const errorMessage = availableRules[rule](value);
+    //     if (errorMessage) {
+    //         error = errorMessage;
+    //     }
+    // })
+    // return {error};
 }
