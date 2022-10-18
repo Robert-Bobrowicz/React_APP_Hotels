@@ -2,10 +2,15 @@ import { useState } from "react";
 import Input from "../Input/Input";
 import LoadingButton from "../LoginButton/LoginButton";
 import formValidate from "../../helpers/formValidate";
-import axios from "../../axios";
+// import axios from "../../axios"; //wczytuje instację axiosa z pliku axios.js
+import axios from "axios";
+import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export default function Register(props) {
+    const [auth, setAuth] = useAuth();
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
     const [form, setForm] = useState({
         email: {
             value: '',
@@ -27,8 +32,23 @@ export default function Register(props) {
         e.preventDefault();
         setLoading(true);
 
-        const res = await axios.get("/users.json");
-        console.log(res);
+
+        try {
+            const res = await axios.post("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD7JzyCezKKp4DvGRRMkz63DWfaSGQcDeU", {
+                email: form.email.value,
+                password: form.password.value,
+                returnSecureToken: true
+            });
+            console.log(res);
+            setAuth(true, res.data);
+            navigate('/');
+        } catch (ex) {
+            console.log(ex.response);
+        }
+
+
+        // const res = await axios.get("/users.json"); //tu wystarczy wpisać tylko nazwę tablicy z DB, gdyż ścieżka pobrana jest w instancji
+        // console.log(res);
 
         // const res = await fetch("https://hotelsdb-6ba12-default-rtdb.europe-west1.firebasedatabase.app/users.json", {
         //     // method: "POST",
@@ -63,6 +83,10 @@ export default function Register(props) {
             }
         })
     };
+
+    if (auth) {
+        navigate('/');
+    }
 
     return (
         <div className="card mb-4">

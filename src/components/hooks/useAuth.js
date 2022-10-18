@@ -8,11 +8,15 @@ export default function useAuth() {
 
     useDebugValue(auth ? 'Logged in' : 'Logged out'); //Narzędzia deweloperskie w Componenets 
 
-    const setAuth = (value) => {
-        if (value) {
+    const setAuth = (isAuthenticated, tokenData = null) => {
+        if (isAuthenticated) {
             authContext.login();
+            if (tokenData) {
+                window.localStorage.setItem("token-data", JSON.stringify(tokenData));
+            }
         } else {
             authContext.logout();
+            window.localStorage.removeItem("token-data");
         }
     }
 
