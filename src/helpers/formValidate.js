@@ -1,9 +1,14 @@
+import { validateEmail } from "./validateEmail";
+
 const availableRules = {
     required(value) {
         return value ? '' : 'Required';
     },
     min(value, rule) {
         return value.length >= rule.length ? '' : `Minimum required characters: ${rule.length}`;
+    },
+    email(value) {
+        return validateEmail(value) ? '' : 'Enter correct email';
     }
 }
 

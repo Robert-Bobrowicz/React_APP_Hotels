@@ -23,7 +23,7 @@ function Menu() {
             <ul className={styles.menu}>
                 <li className={styles.menuItem}>
                     {/* <a href='#Home'>Home</a><span > </span> */}
-                    <NavLink to='/' className={styles.menuItemActive}>Home</NavLink>
+                    <NavLink to='/' className="btn text-center">Home</NavLink>
                 </li>
                 <li className={styles.menuItem}>
                     {/* {auth.isAuthenticated ? <button onClick={auth.logout} className="btn text-center">Log out</button>

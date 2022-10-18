@@ -20,6 +20,8 @@ export default function Register(props) {
         }
     });
 
+    const valid = !Object.values(form).map(el => el.error).filter(error => error).length;
+
     const submit = (e) => {
         e.preventDefault();
         setLoading(true);
@@ -60,14 +62,20 @@ export default function Register(props) {
 
                     <Input
                         label="Password"
-                        type="text"
+                        type="password"
                         value={form.password.value}
                         onChange={val => changeHandler(val, 'password')}
                         error={form.password.error}
                         showError={form.password.showError}
                     />
 
-                    <LoadingButton className="btn btn-primary mt-4" loading={loading}>Save</LoadingButton>
+                    <LoadingButton
+                        className="btn btn-primary mt-4"
+                        loading={loading}
+                        disabled={!valid}
+                    >
+                        
+                    </LoadingButton>
                 </form>
             </div>
         </div>

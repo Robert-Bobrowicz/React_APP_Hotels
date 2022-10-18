@@ -18,6 +18,7 @@ import ProfileDetails from "./pages/Profile/ProfileDetails";
 import MyHotels from "./pages/Profile/MyHotels";
 import NotFound from './pages/404/NotFound';
 import Login from './pages/Auth/Login';
+import Register from './components/Register/Register';
 import ErrorBoundary from './components/hoc/ErrorBoundary';
 import AddHotel from './components/Hotels/AddHotel/AddHotel';
 
@@ -93,6 +94,7 @@ function App() {
                         <Route exact path="/" element={<Home />} />
                         <Route path="/hotel/:id" element={<Hotel />} />
                         <Route path="/search/:term" element={<Search />} />
+                        <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
                         <Route path='/profile' element={state.isAuthenticated ? <Profile /> : <Login />}>
                           <Route path="/profile" element={<ProfileDetails />} />
