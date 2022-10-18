@@ -60,8 +60,7 @@ export default function AddHotel(props) {
         //save data to backend
         setTimeout(() => {
             setLoading(false);
-        }, 1500)
-
+        }, 1500);
     }
 
     // const changeFeatureHandler = (e) => {

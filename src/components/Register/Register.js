@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Input from "../Input/Input";
 import LoadingButton from "../LoginButton/LoginButton";
+import formValidate from "../../helpers/formValidate";
 
 export default function Register(props) {
     const [loading, setLoading] = useState(false);
@@ -19,8 +20,28 @@ export default function Register(props) {
         }
     });
 
-    const submit = () => {
+    const submit = (e) => {
+        e.preventDefault();
+        setLoading(true);
 
+        //save data to backend
+        setTimeout(() => {
+            setLoading(false);
+        }, 1500);
+    };
+
+    const changeHandler = (value, fieldName) => {
+        const error = formValidate(form[fieldName].rules, value);
+
+        setForm({
+            ...form,
+            [fieldName]: {
+                ...form[fieldName],
+                value,
+                showError: true,
+                error: error
+            }
+        })
     };
 
     return (

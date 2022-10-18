@@ -34,7 +34,12 @@ function Menu() {
                             <button onClick={logout} className="btn text-center">Log out</button>
                         </>
 
-                        : <button onClick={login} className="btn text-center">Log in</button>}
+                        :
+                        <>
+                            <NavLink to="/register" className="btn text-center">Register</NavLink>
+                            <button onClick={login} className="btn text-center">Log in</button>
+                        </>
+                    }
                 </li>
             </ul>
         </div>
