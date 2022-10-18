@@ -6,6 +6,7 @@ import formValidate from "../../helpers/formValidate";
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import REACT_APP_API_KEY from '.env';
 
 export default function Register(props) {
     const [auth, setAuth] = useAuth();
