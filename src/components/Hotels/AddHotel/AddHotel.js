@@ -19,13 +19,13 @@ export default function AddHotel(props) {
             value: '',
             error: '',
             showError: false,
-            rules: ['required']
+            rules: ['required', { rule: 'min', length: 4 }]
         },
         description: {
             value: '',
             error: '',
             showError: false,
-            rules: ['required']
+            rules: ['required', { rule: 'min', length: 10 }]
         },
         city: {
             value: '',
