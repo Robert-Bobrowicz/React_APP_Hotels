@@ -26,7 +26,7 @@ export default function formValidate(rules = [], value) {   //jako parametr przy
     }
     return '';
 
-    // let error = '';
+    // let error = ''; //wersja walidacji bez sprawdzenia czy rule jest instancją Objectu
     // rules.forEach(rule => {
     //     const errorMessage = availableRules[rule](value);
     //     if (errorMessage) {
