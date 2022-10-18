@@ -2,6 +2,7 @@ import { useState } from "react";
 import Input from "../Input/Input";
 import LoadingButton from "../LoginButton/LoginButton";
 import formValidate from "../../helpers/formValidate";
+import axios from "axios";
 
 export default function Register(props) {
     const [loading, setLoading] = useState(false);
@@ -22,9 +23,26 @@ export default function Register(props) {
 
     const valid = !Object.values(form).map(el => el.error).filter(error => error).length;
 
-    const submit = (e) => {
+    const submit = async (e) => {
         e.preventDefault();
         setLoading(true);
+
+        const res = await axios.get("https://hotelsdb-6ba12-default-rtdb.europe-west1.firebasedatabase.app/users.json")
+        console.log(res);
+
+        // const res = await fetch("https://hotelsdb-6ba12-default-rtdb.europe-west1.firebasedatabase.app/users.json", {
+        //     // method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         "Accept": "application/json"
+        //     },
+        //     // body: JSON.stringify({
+        //     //     email: "miszka@goog.com",
+        //     //     password: "1234567"
+        //     // })
+        // });
+        // const contentDB = await res.json();
+        // console.log(contentDB);
 
         //save data to backend
         setTimeout(() => {
@@ -74,7 +92,7 @@ export default function Register(props) {
                         loading={loading}
                         disabled={!valid}
                     >
-                        
+
                     </LoadingButton>
                 </form>
             </div>
