@@ -34,7 +34,7 @@ export default function Register(props) {
 
 
         try {
-            const res = await axios.post("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD7JzyCezKKp4DvGRRMkz63DWfaSGQcDeU", {
+            const res = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${REACT_APP_API_KEY}`, {
                 email: form.email.value,
                 password: form.password.value,
                 returnSecureToken: true
