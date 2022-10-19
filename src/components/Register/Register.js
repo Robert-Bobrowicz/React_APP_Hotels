@@ -6,12 +6,12 @@ import formValidate from "../../helpers/formValidate";
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import REACT_APP_API_KEY from '.env';
 
 export default function Register(props) {
     const [auth, setAuth] = useAuth();
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const API_KEY = process.env.REACT_APP_API_KEY;
     const [form, setForm] = useState({
         email: {
             value: '',
@@ -33,9 +33,8 @@ export default function Register(props) {
         e.preventDefault();
         setLoading(true);
 
-
         try {
-            const res = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${REACT_APP_API_KEY}`, {
+            const res = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`, {
                 email: form.email.value,
                 password: form.password.value,
                 returnSecureToken: true
