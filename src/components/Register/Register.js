@@ -46,7 +46,6 @@ export default function Register(props) {
             console.log(ex.response);
         }
 
-
         // const res = await axios.get("/users.json"); //tu wystarczy wpisać tylko nazwę tablicy z DB, gdyż ścieżka pobrana jest w instancji
         // console.log(res);
 
@@ -64,7 +63,7 @@ export default function Register(props) {
         // const contentDB = await res.json();
         // console.log(contentDB);
 
-        //save data to backend
+        // save data to backend
         setTimeout(() => {
             setLoading(false);
         }, 1500);
@@ -84,9 +83,10 @@ export default function Register(props) {
         })
     };
 
+    console.log(auth);
     if (auth) {
         navigate('/');
-    }
+    };
 
     return (
         <div className="card mb-4">
@@ -115,9 +115,7 @@ export default function Register(props) {
                         className="btn btn-primary mt-4"
                         loading={loading}
                         disabled={!valid}
-                    >
-
-                    </LoadingButton>
+                    />
                 </form>
             </div>
         </div>
