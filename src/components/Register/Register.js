@@ -64,9 +64,9 @@ export default function Register(props) {
         // console.log(contentDB);
 
         // save data to backend
-        setTimeout(() => {
-            setLoading(false);
-        }, 1500);
+        // setTimeout(() => {
+        //     setLoading(false);
+        // }, 1500);
     };
 
     const changeHandler = (value, fieldName) => {
@@ -83,7 +83,7 @@ export default function Register(props) {
         })
     };
 
-    console.log(auth);
+    // console.log(auth);
     if (auth) {
         navigate('/');
     };

@@ -32,6 +32,24 @@ function Input(props) {
         )
     }
 
+    if (props.type === "select") {
+        return (
+            <div className="form-group mb-4">
+                <label>{props.label}</label>
+                <select
+                    value={props.value}
+                    onChange={e => props.onChange(e.target.value)}
+                    className={`form-control ${props.error && props.showError ? 'is-invalid' : ''}`}
+                >
+                    {props.options.map(option =>
+                        <option value={option.value} key={option.value}>{option.label}</option>
+                    )}
+                </select>
+                <div className="invalid-feedback">{props.error}</div>
+            </div>
+        )
+    }
+
     const changeFeatureHandler = e => {
         const value = e.target.value;
         const isChecked = e.target.checked;

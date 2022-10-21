@@ -67,7 +67,7 @@ function App() {
   // }
 
   return (
-    <Router>
+    <Router basename='/'>
       <AuthContext.Provider
         value={{
           isAuthenticated: state.isAuthenticated,
