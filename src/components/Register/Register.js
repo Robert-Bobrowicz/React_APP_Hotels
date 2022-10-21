@@ -28,6 +28,7 @@ export default function Register(props) {
     });
 
     const valid = !Object.values(form).map(el => el.error).filter(error => error).length;
+    const [error, setError] = useState('');
 
     const submit = async (e) => {
         e.preventDefault();
@@ -44,6 +45,7 @@ export default function Register(props) {
             navigate('/');
         } catch (ex) {
             console.log(ex.response);
+            setError(ex.response.data.error.message);
         }
 
         // const res = await axios.get("/users.json"); //tu wystarczy wpisać tylko nazwę tablicy z DB, gdyż ścieżka pobrana jest w instancji
@@ -110,6 +112,8 @@ export default function Register(props) {
                         error={form.password.error}
                         showError={form.password.showError}
                     />
+
+                    {error ? (<div className="alert alert-danger">{error}</div>) : null}
 
                     <LoadingButton
                         className="btn btn-primary mt-4"
