@@ -2,8 +2,8 @@ import { useState } from "react";
 import Input from "../Input/Input";
 import LoadingButton from "../LoginButton/LoginButton";
 import formValidate from "../../helpers/formValidate";
-// import axios from "../../axios"; //wczytuje instację axiosa z pliku axios.js
-import axios from "axios";
+import axios from "../../axios-auth"; //wczytuje instację axiosa z pliku axios-auth.js 
+// import axios from "axios";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
@@ -35,7 +35,7 @@ export default function Register(props) {
         setLoading(true);
 
         try {
-            const res = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`, {
+            const res = await axios.post(`/accounts:signUp?key=${API_KEY}`, {
                 email: form.email.value,
                 password: form.password.value,
                 returnSecureToken: true
