@@ -2,6 +2,7 @@ import { useState } from "react"
 import useAuth from "../../components/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import LoadingButton from "../../components/LoginButton/LoginButton";
+import axios from "axios";
 
 export default function Login(props) {
 
@@ -12,23 +13,35 @@ export default function Login(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [valid, setValid] = useState(null);
+    const API_KEY = process.env.REACT_APP_API_KEY;
 
-    const submit = (e) => {
+    const submit = async (e) => {
         e.preventDefault();
         setLoading(true);
+
+        try {
+            const res = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`, {
+                eamil: email,
+                password: password,
+                returnSecureToken: true
+            });
+            console.log(res);
+        } catch (ex) {
+            console.log(ex.response);
+        };
         // console.log(emailRef.current.value);
 
-        setTimeout(() => {
-            //login process
-            if (true) {
-                setAuth(true);
-                navigate('/');
-            } else {
-                setValid(false);
-                setPassword('');
-            }
-            // setLoading(false);
-        }, 1500);
+        // setTimeout(() => {
+        //     //login process
+        //     if (true) {
+        //         setAuth(true);
+        //         navigate('/');
+        //     } else {
+        //         setValid(false);
+        //         setPassword('');
+        //     }
+        //     // setLoading(false);
+        // }, 1500);
 
         console.log(auth, email, password);
     }
