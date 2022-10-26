@@ -1,3 +1,5 @@
+//to jest instancja axiosa z linkiem url do bazy danych na firebase bez autentykacji
+
 import axios from "axios";
 
 const instance = axios.create({
