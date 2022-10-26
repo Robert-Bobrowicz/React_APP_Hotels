@@ -51,6 +51,8 @@ export default function Login(props) {
         //     }
         //     // setLoading(false);
         // }, 1500);
+
+        if (auth) navigate('/');
     }
 
     return (

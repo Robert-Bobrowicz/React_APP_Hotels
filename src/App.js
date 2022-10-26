@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
@@ -65,6 +65,17 @@ function App() {
   //       .includes(term.toLowerCase()));
   //   dispatch({ type: 'set-hotels', hotels: newHotels })
   // }
+
+  const checkUser = () => {
+    const tokenData = JSON.parse(window.localStorage.getItem('token-data'));
+    if (tokenData) {
+      dispatch({ type: 'set-isAuthenticated', isAuthenticated: true });
+    }
+  };
+
+  useEffect(() => {
+    checkUser();
+  }, []);
 
   return (
     <Router basename='/'>
