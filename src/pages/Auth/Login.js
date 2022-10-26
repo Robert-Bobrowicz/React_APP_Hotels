@@ -22,7 +22,7 @@ export default function Login(props) {
 
         try {
             const res = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`, {
-                eamil: email,
+                email: email,
                 password: password,
                 returnSecureToken: true
             });
@@ -51,8 +51,6 @@ export default function Login(props) {
         //     }
         //     // setLoading(false);
         // }, 1500);
-
-        console.log(auth, email, password);
     }
 
     return (
