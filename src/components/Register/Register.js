@@ -41,11 +41,16 @@ export default function Register(props) {
                 returnSecureToken: true
             });
             console.log(res);
-            setAuth(true, res.data);
+            setAuth(true, {
+                email: res.data.email,
+                token: res.data.idToken,
+                userId: res.data.localId
+            });
             navigate('/');
         } catch (ex) {
             console.log(ex.response);
             setError(ex.response.data.error.message);
+            setLoading(false);
         }
 
         // const res = await axios.get("/users.json"); //tu wystarczy wpisać tylko nazwę tablicy z DB, gdyż ścieżka pobrana jest w instancji

@@ -12,7 +12,8 @@ export default function Login(props) {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [valid, setValid] = useState(null);
+    // const [valid, setValid] = useState(null);
+    const [error, setError] = useState('');
     const API_KEY = process.env.REACT_APP_API_KEY;
 
     const submit = async (e) => {
@@ -26,8 +27,16 @@ export default function Login(props) {
                 returnSecureToken: true
             });
             console.log(res);
+            setAuth(true, {
+                email: res.data.email,
+                token: res.data.idToken,
+                userId: res.data.localId
+            });
+            navigate('/');
         } catch (ex) {
             console.log(ex.response);
+            setError(ex.response.data.error.message);
+            setLoading(false);
         };
         // console.log(emailRef.current.value);
 
@@ -49,12 +58,12 @@ export default function Login(props) {
     return (
         <div>
             <h2>Login</h2>
-            {valid === false ?
+            {/* {valid === false ?
                 (
                     <div className="alert alert-danger">Invalid login data</div>
                 ) : null
 
-            }
+            } */}
             <form onSubmit={submit}>
                 <div className="form-groupmt-2">
                     <label>Email</label>
@@ -73,6 +82,9 @@ export default function Login(props) {
                         onChange={e => setPassword(e.target.value)}
                         className="form-control" placeholder="*************" />
                 </div>
+
+                {error ? (<div className="alert alert-danger mt-2">{error}</div>) : null}
+
                 {
                     loading
                         ? <LoadingButton />
