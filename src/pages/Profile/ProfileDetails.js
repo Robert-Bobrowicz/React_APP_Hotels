@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import LoadingButton from "../../components/LoginButton/LoginButton";
-import {validateEmail} from "../../helpers/validateEmail";
+import { validateEmail } from "../../helpers/validateEmail";
 
 export default function ProfileDetails(props) {
 
