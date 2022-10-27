@@ -41,7 +41,12 @@ export default function Register(props) {
                 returnSecureToken: true
             });
             console.log(res);
-            setAuth(true, {
+            // setAuth(true, {              //po zmianie w reducer.js 11.11
+            //     email: res.data.email,
+            //     token: res.data.idToken,
+            //     userId: res.data.localId
+            // });
+            setAuth({
                 email: res.data.email,
                 token: res.data.idToken,
                 userId: res.data.localId

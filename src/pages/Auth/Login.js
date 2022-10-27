@@ -27,7 +27,12 @@ export default function Login(props) {
                 returnSecureToken: true
             });
             console.log(res);
-            setAuth(true, {
+            // setAuth(true, {
+            //     email: res.data.email,
+            //     token: res.data.idToken,
+            //     userId: res.data.localId
+            // });
+            setAuth({
                 email: res.data.email,
                 token: res.data.idToken,
                 userId: res.data.localId

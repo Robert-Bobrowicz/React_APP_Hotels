@@ -6,10 +6,8 @@ export const reducer = (state, action) => {
         //         hotels: action.hotels
         //     };
         case 'set-isAuthenticated':
-            return {
-                ...state,
-                isAuthenticated: action.isAuthenticated
-            };
+            // return { ...state, isAuthenticated: action.isAuthenticated };
+            return { ...state, user: action.user}
         // case 'set-loading':
         //     return {
         //         ...state,
@@ -23,6 +21,7 @@ export const reducer = (state, action) => {
 export const initialState = {
     // hotels: [],
     // loading: true,
-    isAuthenticated: false,
+    // isAuthenticated: false,
+    user: JSON.parse(window.localStorage.getItem('token-data')) ?? null,
     color: 'primary'
 }

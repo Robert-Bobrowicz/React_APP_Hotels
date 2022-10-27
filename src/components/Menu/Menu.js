@@ -2,11 +2,12 @@
 import styles from './Menu.module.css';
 // import AuthContext from "../context/authContext";
 import useAuth from "../hooks/useAuth";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 function Menu() {
     // const auth = useContext(AuthContext);
     const [auth, setAuth] = useAuth();
+    const navigate = useNavigate();
 
     // const login = (e) => {
     //     e.preventDefault();
@@ -16,6 +17,7 @@ function Menu() {
     const logout = (e) => {
         e.preventDefault();
         setAuth(false);
+        navigate('/');
     }
 
     return (

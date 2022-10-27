@@ -81,8 +81,10 @@ function App() {
     <Router basename='/'>
       <AuthContext.Provider
         value={{
-          isAuthenticated: state.isAuthenticated,
-          login: () => dispatch({ type: 'set-isAuthenticated', isAuthenticated: true }),
+          // isAuthenticated: state.isAuthenticated,
+          // login: () => dispatch({ type: 'set-isAuthenticated', isAuthenticated: true }),
+          user: state.user,
+          login: (user) => dispatch({ type: 'set-isAuthenticated', user }),
           logout: () => dispatch({ type: 'set-isAuthenticated', isAuthenticated: false })
         }}>
         <ThemeContext.Provider value={state.color}>
@@ -107,7 +109,8 @@ function App() {
                         <Route path="/search/:term" element={<Search />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
-                        <Route path='/profile' element={state.isAuthenticated ? <Profile /> : <Login />}>
+                        {/* <Route path='/profile' element={state.isAuthenticated ? <Profile /> : <Login />}>  */}
+                        <Route path='/profile' element={state.user ? <Profile /> : <Login />}>
                           <Route path="/profile" element={<ProfileDetails />} />
                           <Route path="/profile/myhotels" element={<MyHotels />} />
                         </Route>
