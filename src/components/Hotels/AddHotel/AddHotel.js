@@ -4,6 +4,7 @@ import Input from "../../Input/Input";
 import formValidate from "../../../helpers/formValidate";
 import axios from "../../../axios";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 export default function AddHotel(props) {
     // const imageRef = useRef();
@@ -15,7 +16,7 @@ export default function AddHotel(props) {
     //     amenities: [],
     //     picture: null
     // });
-
+    const [auth] = useAuth();
     const navigate = useNavigate();
     const [form, setForm] = useState({
         name: {
@@ -66,10 +67,12 @@ export default function AddHotel(props) {
                 description: form.description.value,
                 city: form.city.value,
                 rooms: form.rooms.value,
-                amenities: form.amenities.value
+                amenities: form.amenities.value,
+                userId: auth.userId
             });
             navigate('/profile/myhotels');
             console.log("new hotel has been added to remote DB", res);
+            setLoading(false);
         } catch (ex) {
             console.log(ex.response);
         }
@@ -77,7 +80,7 @@ export default function AddHotel(props) {
         // setTimeout(() => {
         //     setLoading(false);
         // }, 1500);
-        setLoading(false);
+        
     }
 
     // const changeFeatureHandler = (e) => {
