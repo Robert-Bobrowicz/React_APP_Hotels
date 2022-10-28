@@ -11,6 +11,7 @@ export default function ProfileDetails(props) {
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('my@email.com');
     const [password, setPassword] = useState('');
+    const [success, setSuccess] = useState(false);
     const [errors, setErrors] = useState({
         email: '',
         password: ''
@@ -32,7 +33,7 @@ export default function ProfileDetails(props) {
             const data = {
                 idToken: auth.token,
                 email: email,
-                password: '',
+                password: password,
                 returnSecureToken: true
             };
             const res = await axios.post(`accounts:update?key=${API_KEY}`, data);
@@ -45,7 +46,8 @@ export default function ProfileDetails(props) {
                 email: res.data.email,
                 idToken: res.data.idToken,
                 userId: res.data.localId
-            })
+            });
+            setSuccess(true);
         } catch (ex) {
             console.log(ex.response);
         }
@@ -73,6 +75,7 @@ export default function ProfileDetails(props) {
         <>
             <p>Profile details</p>
             <form onSubmit={submit}>
+                {success ? (<div className="alert alert-success">Data saved successfully</div>) : null}
                 <div className="form-groupmt-2">
                     <label>Email</label>
                     <input
