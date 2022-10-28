@@ -72,7 +72,7 @@ export default function AddHotel(props) {
             });
             navigate('/profile/myhotels');
             console.log("new hotel has been added to remote DB", res);
-            setLoading(false);
+
         } catch (ex) {
             console.log(ex.response);
         }
@@ -80,7 +80,7 @@ export default function AddHotel(props) {
         // setTimeout(() => {
         //     setLoading(false);
         // }, 1500);
-        
+        setLoading(false);
     }
 
     // const changeFeatureHandler = (e) => {
