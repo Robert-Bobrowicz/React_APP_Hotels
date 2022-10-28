@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import LoadingButton from "../../components/LoginButton/LoginButton";
 import { validateEmail } from "../../helpers/validateEmail";
+import axios from "../../axios-auth";
+import useAuth from "../../components/hooks/useAuth";
 
 export default function ProfileDetails(props) {
 
+    const [auth, setAuth] = useAuth();
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('my@email.com');
     const [password, setPassword] = useState('');
@@ -12,17 +15,34 @@ export default function ProfileDetails(props) {
         password: ''
     });
 
-    const submit = (e) => {
+    const submit = async (e) => {
         e.preventDefault();
         setLoading(true);
         // console.log(emailRef.current.value);
 
-        setTimeout(() => {
-            //validate data
+        // setTimeout(() => {
+        //     //validate data
 
-            //save data to backend
-            setLoading(false);
-        }, 1500);
+        //     //save data to backend
+        //     setLoading(false);
+        // }, 1500);
+
+        try {
+            const res = await axios.post('accounts:update', {
+                idToken: auth.token,
+                email: email,
+                returnSecureToken: true
+            })
+            console.log(res);
+            setAuth({
+                email: res.data.email,
+                idToken: res.data.idToken,
+                userId: res.data.localId
+            })
+        } catch (ex) {
+            console.log(ex.response);
+        }
+        setLoading(false);
     }
 
 
