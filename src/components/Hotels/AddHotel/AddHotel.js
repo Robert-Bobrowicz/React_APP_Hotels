@@ -2,6 +2,8 @@ import { useState } from "react";
 import LoadingButton from "../../../components/LoginButton/LoginButton";
 import Input from "../../Input/Input";
 import formValidate from "../../../helpers/formValidate";
+import axios from "../../../axios";
+import { useNavigate } from "react-router-dom";
 
 export default function AddHotel(props) {
     // const imageRef = useRef();
@@ -14,6 +16,7 @@ export default function AddHotel(props) {
     //     picture: null
     // });
 
+    const navigate = useNavigate();
     const [form, setForm] = useState({
         name: {
             value: '',
@@ -53,14 +56,28 @@ export default function AddHotel(props) {
 
     const [loading, setLoading] = useState(false);
 
-    const submit = (e) => {
+    const submit = async (e) => {
         e.preventDefault();
         setLoading(true);
 
+        try {
+            const res = await axios.post('/hotels.json', {
+                name: form.name.value,
+                description: form.description.value,
+                city: form.city.value,
+                rooms: form.rooms.value,
+                amenities: form.amenities.value
+            });
+            navigate('/profile/myhotels');
+            console.log("new hotel has been added to remote DB", res);
+        } catch (ex) {
+            console.log(ex.response);
+        }
         //save data to backend
-        setTimeout(() => {
-            setLoading(false);
-        }, 1500);
+        // setTimeout(() => {
+        //     setLoading(false);
+        // }, 1500);
+        setLoading(false);
     }
 
     // const changeFeatureHandler = (e) => {
