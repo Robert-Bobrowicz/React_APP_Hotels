@@ -29,11 +29,17 @@ export default function ProfileDetails(props) {
         // }, 1500);
 
         try {
-            const res = await axios.post(`accounts:update?key=${API_KEY}`, {
+            const data = {
                 idToken: auth.token,
                 email: email,
+                password: '',
                 returnSecureToken: true
-            })
+            };
+            const res = await axios.post(`accounts:update?key=${API_KEY}`, data);
+
+            if (password) {
+                data.password = password;
+            };
             console.log(res);
             setAuth({
                 email: res.data.email,
