@@ -4,14 +4,24 @@ import axios from '../../axios';
 
 export default function MyHotels(props) {
     const { pathname } = useLocation();
-    const [myHotels, setMyHotels] = useState({
-        'keyID': {
-            name: 'Mój hotel'
-        }
-    });
+    const [myHotels, setMyHotels] = useState([]);
     const fetchMyHotels = async () => {
         try {
-            const res = await axios.get('/hotels');
+            const res = await axios.get('/hotels.json');
+            // const res = {   //to w celu sprawdzenia i konwersji obiektu w postaci zapisywanej w DB 
+            //     'keyID': {
+            //         name: 'Mój hotel'
+            //     }
+            // }
+
+            const newHotel = [];
+            for (const key in res.data) {
+                newHotel.push({
+                    ...res.data[key],
+                    id: key
+                });
+            }
+            setMyHotels(newHotel);
         } catch (ex) {
             console.log(ex.response);
         }
@@ -31,19 +41,21 @@ export default function MyHotels(props) {
                         <thead>
                             <tr>
                                 <th>Name</th>
-                            <th>Options</th>
-                            </tr>                          
+                                <th>Options</th>
+                            </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    Name of your hotel
-                                </td>
-                                <td>
-                                    <button className='btn btn-warning'>Edit</button>
-                                    <button className='m-2 btn btn-danger'>Delete</button>
-                                </td>
-                            </tr>
+                            {myHotels.map((hotel) => (
+                                <tr key={hotel.id}>
+                                    <td>
+                                        {hotel.name}
+                                    </td>
+                                    <td>
+                                        <button className='btn btn-primary'>Edit</button>
+                                        <button className='m-2 btn btn-danger'>Delete</button>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </>
