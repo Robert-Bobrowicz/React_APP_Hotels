@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import axios from '../../axios';
+import { objectToArrayConvereter } from '../../helpers/objectToArray';
 
 export default function MyHotels(props) {
     const { pathname } = useLocation();
@@ -14,13 +15,14 @@ export default function MyHotels(props) {
             //     }
             // }
 
-            const newHotel = [];
-            for (const key in res.data) {
-                newHotel.push({
-                    ...res.data[key],
-                    id: key
-                });
-            }
+            // const newHotel = [];  //wyniosłem do nowej funcki w helpers
+            // for (const key in res.data) {
+            //     newHotel.push({
+            //         ...res.data[key],
+            //         id: key
+            //     });
+            // }
+            const newHotel = objectToArrayConvereter(res.data);
             setMyHotels(newHotel);
         } catch (ex) {
             console.log(ex.response);
