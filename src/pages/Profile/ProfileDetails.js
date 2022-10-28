@@ -7,6 +7,7 @@ import useAuth from "../../components/hooks/useAuth";
 export default function ProfileDetails(props) {
 
     const [auth, setAuth] = useAuth();
+    const API_KEY = process.env.REACT_APP_API_KEY;
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('my@email.com');
     const [password, setPassword] = useState('');
@@ -28,7 +29,7 @@ export default function ProfileDetails(props) {
         // }, 1500);
 
         try {
-            const res = await axios.post('accounts:update', {
+            const res = await axios.post(`accounts:update?key=${API_KEY}`, {
                 idToken: auth.token,
                 email: email,
                 returnSecureToken: true
