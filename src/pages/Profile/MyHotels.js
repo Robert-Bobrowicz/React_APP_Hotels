@@ -24,8 +24,9 @@ export default function MyHotels(props) {
             //         id: key
             //     });
             // }
-            const newHotel = objectToArrayConvereter(res.data);
-            setMyHotels(newHotel.filter(hotel => hotel.userId === auth.userId));
+            const newHotel = objectToArrayConvereter(res.data)
+                .filter(hotel => hotel.userId === auth.userId);
+            setMyHotels(newHotel);
         } catch (ex) {
             console.log(ex.response);
         }
