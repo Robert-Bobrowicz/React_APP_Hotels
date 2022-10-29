@@ -32,7 +32,7 @@ function Toolbar(props) {
 function ThemedButton() {
   const theme = useContext(ThemeContext);
   return (
-    <button className="btn text-center" style={{ background: theme.background, color: theme.foreground }}>
+    <button className="btn btn-secondary text-center mt-4" >
       Go for it and book!
     </button>
   );

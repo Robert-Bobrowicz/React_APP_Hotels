@@ -68,6 +68,5 @@ export default function MyHotels(props) {
 
             <Link to={`${pathname}/add-new`} className='btn btn-primary'>Add new hotel</Link>
         </>
-
     )
 }
