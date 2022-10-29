@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import axios from '../../axios';
 import { objectToArrayConvereter } from '../../helpers/objectToArray';
+import useAuth from '../../components/hooks/useAuth';
 
 export default function MyHotels(props) {
+    const [auth] = useAuth();
     const { pathname } = useLocation();
     const [myHotels, setMyHotels] = useState([]);
     const fetchMyHotels = async () => {
@@ -23,7 +25,7 @@ export default function MyHotels(props) {
             //     });
             // }
             const newHotel = objectToArrayConvereter(res.data);
-            setMyHotels(newHotel);
+            setMyHotels(newHotel.filter(hotel => hotel.userId === auth.userId));
         } catch (ex) {
             console.log(ex.response);
         }
