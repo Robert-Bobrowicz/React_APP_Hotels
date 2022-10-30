@@ -49,7 +49,7 @@ export default function AddHotel(props) {
             showError: false
         },
         rating: {
-            value: 0,
+            value: '',
             error: '',
             showError: false
         },
