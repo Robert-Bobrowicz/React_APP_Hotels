@@ -48,8 +48,18 @@ export default function AddHotel(props) {
             error: '',
             showError: false
         },
+        rating: {
+            value: 0,
+            error: '',
+            showError: false
+        },
         picture: {
             value: null,
+            error: '',
+            showError: false
+        },
+        userId: {
+            value: '',
             error: '',
             showError: false
         }
@@ -68,11 +78,12 @@ export default function AddHotel(props) {
                 city: form.city.value,
                 rooms: form.rooms.value,
                 amenities: form.amenities.value,
-                userId: auth.userId
+                rating: form.rating.value,
+                id: auth.userId
             });
             navigate('/profile/myhotels');
             console.log("new hotel has been added to remote DB", res);
-
+            setLoading(false);
         } catch (ex) {
             console.log(ex.response);
         }
@@ -80,7 +91,6 @@ export default function AddHotel(props) {
         // setTimeout(() => {
         //     setLoading(false);
         // }, 1500);
-        setLoading(false);
     }
 
     // const changeFeatureHandler = (e) => {
@@ -266,6 +276,14 @@ export default function AddHotel(props) {
                         ]}
                         error={form.amenities.error}
                         showError={form.amenities.showError}
+                    />
+
+                    <Input
+                        label="Rating"
+                        value={form.rating.value}
+                        onChange={val => changeHandler(val, 'rating')}
+                        error={form.rating.error}
+                        showError={form.rating.showError}
                     />
 
                     <Input

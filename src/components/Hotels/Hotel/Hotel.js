@@ -11,7 +11,7 @@ const propTypes = {
     city: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired
+    id: PropTypes.string.isRequired
 };
 
 function Hotel(props) {
