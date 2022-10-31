@@ -4,37 +4,43 @@ import useWebsiteTitle from "../components/hooks/useWebSiteTitle";
 import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
 // import ReducerContext from "../components/context/reducerContext";
 // import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
+import axios from "../axios";
 
 export default function Hotel(props) {
     const params = useParams(); //inny zapis: const {id} = useParams();
-    console.log(params); //zwraca listę parametrów, tu tylko id hotelu, ze ścieżki zdefiniowanej w App w Route
-
+    // console.log(params); //zwraca listę parametrów, tu tylko id hotelu, ze ścieżki zdefiniowanej w App w Route
+    // const { id } = useParams();
     const [hotel, setHotel] = useState(null);
     // const reducer = useContext(ReducerContext);
     const [loading, setLoading] = useState(true);
     const setTitle = useWebsiteTitle();
 
-    const fetchHotel = () => {
+    const fetchHotel = async () => {
 
-        setHotel({
-            id: 2,
-            name: "Robert's Apartments Old Town",
-            city: "Old Town, Warsaw",
-            rating: 9.8,
-            description: "Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?",
-            image: ""
-        });
+        // setHotel({
+        //     id: 2,
+        //     name: "Robert's Apartments Old Town",
+        //     city: "Old Town, Warsaw",
+        //     rating: 9.8,
+        //     description: "Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?",
+        //     image: ""
+        // });
         // reducer.dispatch({ type: 'set-loading', loading: false });
-        setTitle('Old Town');
+        try {
+            const res = await axios.get(`/hotels/${params.id}.json`);
+            setHotel(res.data); 
+            console.log(res.data);
+            setTitle('Hotel ' + res.data.name);
+        } catch (ex) {
+            console.log(ex.response);
+        }
+
         setLoading(false);
     }
 
     useEffect(() => {
         // reducer.dispatch({ type: 'set-loading', loading: true });
-
-        setTimeout(() => {
-            fetchHotel();
-        }, 1000)
+        fetchHotel();
     }, [])
 
     // if (loading) return <LoadingIcon /> //inaczej można przez stan globalny reducerContext
