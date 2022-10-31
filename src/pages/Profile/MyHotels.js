@@ -30,7 +30,15 @@ export default function MyHotels(props) {
         } catch (ex) {
             console.log(ex.response);
         }
+    };
 
+    const deleteHandler = async (id) => {
+        try {
+            await axios.delete(`/hotels/${id}.json`);
+            setMyHotels(myHotels.filter(x => x.id !== id));
+        } catch (ex) {
+            console.log(ex.response);
+        }
     };
 
     useEffect(() => {
@@ -57,7 +65,7 @@ export default function MyHotels(props) {
                                     </td>
                                     <td>
                                         <button className='btn btn-primary'>Edit</button>
-                                        <button className='m-2 btn btn-danger'>Delete</button>
+                                        <button className='m-2 btn btn-danger' onClick={() => deleteHandler(hotel.id)}>Delete</button>
                                     </td>
                                 </tr>
                             ))}
