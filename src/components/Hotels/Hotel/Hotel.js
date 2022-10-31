@@ -48,7 +48,7 @@ function Hotel(props) {
                         </p>
 
                         {auth
-                            ? <p className="mt-2">4 rooms avaiable</p>
+                            ? <p className="mt-2">{props.rooms} rooms avaiable</p>
                             : null}
                         <Link to={`/hotel/${props.id}`} onClick={clickHandler}
                             className={`btn btn-${theme} float-start px-5`}>
