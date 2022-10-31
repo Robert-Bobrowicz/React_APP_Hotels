@@ -20,7 +20,7 @@ function Hotel(props) {
 
     const clickHandler = (e) => {
         // e.preventDefault(); 
-        props.onOpen(props);
+        if (props.onOpen) props.onOpen(props);
     }
 
     return (
