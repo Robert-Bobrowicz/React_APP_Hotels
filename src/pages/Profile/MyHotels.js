@@ -64,7 +64,7 @@ export default function MyHotels(props) {
                                         {hotel.name}
                                     </td>
                                     <td>
-                                        <button className='btn btn-primary'>Edit</button>
+                                        <Link to={`/profile/myhotels/edit/${hotel.id}`} className='btn btn-primary'>Edit</Link>
                                         <button className='m-2 btn btn-danger' onClick={() => deleteHandler(hotel.id)}>Delete</button>
                                     </td>
                                 </tr>
