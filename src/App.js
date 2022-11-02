@@ -102,7 +102,7 @@ function App() {
                   menu={<Menu />}
 
                   content={
-                    <>
+                    <> 
 
                       <Routes>
                         <Route exact path="/" element={<Home />} />
