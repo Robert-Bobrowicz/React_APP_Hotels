@@ -9,7 +9,7 @@ import useAuth from "../../hooks/useAuth";
 const propTypes = {
     name: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired
 };

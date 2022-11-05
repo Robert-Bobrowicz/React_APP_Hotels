@@ -80,7 +80,7 @@ const HotelForm = props => {
                 city: form.city.value,
                 rooms: form.rooms.value,
                 amenities: form.amenities.value,
-                rating: form.rating.value,
+                rating: Number(form.rating.value),
                 userId: auth.userId
             });
         } catch (ex) {
