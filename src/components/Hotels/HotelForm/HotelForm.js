@@ -81,7 +81,7 @@ const HotelForm = props => {
                 rooms: form.rooms.value,
                 amenities: form.amenities.value,
                 rating: form.rating.value,
-                id: auth.userId
+                userId: auth.userId
             });
         } catch (ex) {
             console.log(ex.response);
