@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useWebsiteTitle from "../components/hooks/useWebSiteTitle";
 import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
+import img from '../assets/images/pexels-ahmed-abdelaziz-453201.jpg';
 // import ReducerContext from "../components/context/reducerContext";
 // import LoadingIcon from "../components/LoadingIcon/LoadingIcon";
 import axios from "../axios";
@@ -28,7 +29,7 @@ export default function Hotel(props) {
         // reducer.dispatch({ type: 'set-loading', loading: false });
         try {
             const res = await axios.get(`/hotels/${params.id}.json`);
-            setHotel(res.data); 
+            setHotel(res.data);
             console.log(res.data);
             setTitle('Hotel ' + res.data.name);
         } catch (ex) {
@@ -47,6 +48,27 @@ export default function Hotel(props) {
     // if (reducer.state.loading) return null; //warunek by nie wyświetlać Hotel details zanim nie wcyta sie hotel z backendu
 
     return loading ? <LoadingIcon /> : (
-        <h2>Hotel details: {hotel.name}</h2>
+        <div className="card">
+            <div className="card-header">
+                <h2>Hotel details: {hotel.name}</h2>
+            </div>
+            <div className="card-body">
+                <img
+                    src={img}
+                    alt="Hotel"
+                    className="img-fluid img-thumbnail mb-4"
+                />
+                <p>Location: <b>{hotel.city}</b></p>
+                <p>Rooms: {hotel.rooms}</p>
+                <p className="lead">{hotel.description}</p>
+                <p>Amenities:</p>
+                <ul>
+                    {hotel.amenities.map(el =>
+                        <li key={el}>{el}</li>)
+                    }
+                </ul>
+                <p><b>Rating: {hotel.rating}</b></p>
+            </div>
+        </div>
     )
 }
