@@ -50,8 +50,11 @@ function Hotel(props) {
                         {auth
                             ? <p className="mt-2">{props.rooms} rooms avaiable</p>
                             : null}
-                        <Link to={`/hotel/${props.id}`} onClick={clickHandler}
-                            className={`btn btn-${theme} float-start px-5`}>
+                        <Link
+                            to={`/hotel/${props.id}`}
+                            onClick={clickHandler}
+                            className={`btn btn-${theme} float-start px-5`}
+                        >
                             View deals
                         </Link>
 

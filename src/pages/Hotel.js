@@ -54,7 +54,7 @@ export default function Hotel(props) {
             </div>
             <div className="card-body">
                 <img
-                    src={img}
+                    src={img} //https://placeimg.com/640/480/arch - tu są losowe zdjęcia
                     alt="Hotel"
                     className="img-fluid img-thumbnail mb-4"
                 />

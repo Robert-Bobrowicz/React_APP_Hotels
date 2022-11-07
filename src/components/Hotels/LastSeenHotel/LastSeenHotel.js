@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 function LastSeenHotel(props) {
 
@@ -7,6 +8,10 @@ function LastSeenHotel(props) {
     // }
 
     // if (!props.hotel) return null;
+
+    const clickHandler = (e) => {
+        if (props.onOpen) props.onOpen(props);
+    };
 
     return (
         <div>
@@ -25,7 +30,11 @@ function LastSeenHotel(props) {
                         marginLeft: "auto"
                     }}
                         className="d-flex justify-content-between">
-                        <a href="#ViewHotel" className="btn btn-sm btn-primary">View offer</a>
+                        <Link
+                            to={`/hotel/${props.id}`}
+                            onClick={clickHandler}
+                            className="btn btn-sm btn-primary"
+                        >View offer</Link>
                         <button onClick={props.onRemove} className="btn btn-sm btn-secondary">Don't show again</button>
                     </div>
 
