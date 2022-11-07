@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import moment from 'moment';
+import { Link } from "react-router-dom";
 
 const BestHotel = (props) => {
     const hotel = props.getBestHotel();
@@ -18,6 +19,11 @@ const BestHotel = (props) => {
         }
     }, []);
 
+    const clickHandler = (e) => {
+        console.log(props.getBestHotel());
+        if (props.onOpen) props.getBestHotel();
+    };
+
     return (
         <div className=" card alert alert-success">
             <div className="card-header text-center">
@@ -29,9 +35,14 @@ const BestHotel = (props) => {
                     <p>Rating: {hotel.rating}</p>
                 </div>
                 <p>Limited time offer, ends {time}!</p>
-                <a href="#ViewHotel" className="btn btn-sm btn-primary">View offer</a>
+                <Link
+                    to={`/hotel/${props.getBestHotel().id}`}
+                    onClick={clickHandler}
+                    className="btn btn-sm btn-primary"
+                >
+                    View offer
+                </Link>
             </div>
-
         </div>
     )
 }

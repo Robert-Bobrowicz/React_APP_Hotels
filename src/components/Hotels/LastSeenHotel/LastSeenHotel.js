@@ -34,7 +34,9 @@ function LastSeenHotel(props) {
                             to={`/hotel/${props.id}`}
                             onClick={clickHandler}
                             className="btn btn-sm btn-primary"
-                        >View offer</Link>
+                        >
+                            View offer
+                        </Link>
                         <button onClick={props.onRemove} className="btn btn-sm btn-secondary">Don't show again</button>
                     </div>
 
