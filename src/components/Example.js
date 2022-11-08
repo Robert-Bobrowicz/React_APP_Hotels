@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const themes = {
   light: {
@@ -30,11 +31,35 @@ function Toolbar(props) {
 }
 
 function ThemedButton() {
-  const theme = useContext(ThemeContext);
+  // const theme = useContext(ThemeContext);
+
+  const [book, setBook] = useState(true);
+
+  function clickHandler() {
+    setBook(false);
+  }
+
+  function clickGoBackHandler() {
+    setBook(true);
+  }
+
   return (
-    <button className="btn btn-secondary text-center mt-4" >
-      Go for it and book!
-    </button>
+    book ?
+      <Link
+        to="/bookhotel"
+        className="btn btn-secondary text-center mt-4"
+        onClick={clickHandler}
+      >
+        Go for it and book!
+      </Link>
+      :
+      <Link
+        to="/"
+        className="btn btn-secondary text-center mt-4"
+        onClick={clickGoBackHandler}
+      >
+        Go back
+      </Link>
   );
 }
 
