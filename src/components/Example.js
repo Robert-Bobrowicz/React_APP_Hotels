@@ -58,7 +58,7 @@ function ThemedButton() {
         className="btn btn-secondary text-center mt-4"
         onClick={clickGoBackHandler}
       >
-        Go back
+        Go home
       </Link>
   );
 }
