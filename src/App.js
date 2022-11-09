@@ -103,8 +103,7 @@ function App() {
                   menu={<Menu />}
 
                   content={
-                    <> 
-
+                    <>
                       <Routes>
                         <Route exact path="/" element={<Home />} />
                         <Route path="/hotel/:id" element={<Hotel />} />

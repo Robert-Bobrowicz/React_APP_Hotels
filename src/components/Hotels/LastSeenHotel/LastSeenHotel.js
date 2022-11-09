@@ -1,3 +1,4 @@
+import RaectDOM from "react-dom";
 import { Link } from "react-router-dom";
 
 function LastSeenHotel(props) {
@@ -13,7 +14,7 @@ function LastSeenHotel(props) {
         if (props.onOpen) props.onOpen(props);
     };
 
-    return (
+    return RaectDOM.createPortal(
         <div>
             <div className=" card alert alert-secondary">
                 <div className="card-header text-center">
@@ -39,10 +40,9 @@ function LastSeenHotel(props) {
                         </Link>
                         <button onClick={props.onRemove} className="btn btn-sm btn-secondary">Don't show again</button>
                     </div>
-
                 </div>
             </div>
-        </div>
+        </div>, document.querySelector("#last-hotel")
     );
 }
 

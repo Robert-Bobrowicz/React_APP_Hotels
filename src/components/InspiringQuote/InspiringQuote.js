@@ -10,7 +10,7 @@ const quotes = [
 
 const style = {
     position: 'absolute',
-    top: '210px',
+    top: '480px',
     left: '0',
     right: '0',
     textAlign: 'center',
